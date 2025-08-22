@@ -148,7 +148,7 @@ export function App() {
         <Header />
         <Tabs selectedId={personId} onSelect={handlePersonSelect} />
         <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
-          {!isTransitioning && <SellerCards personId={displayPersonId} />}
+          <SellerCards personId={displayPersonId} />
         </div>
       </div>
     </>

@@ -48,8 +48,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Стили для слайдера */
 .seller-cards-container {
-  transition: transform 0.3s ease-in-out;
-  will-change: transform;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  will-change: transform, opacity;
 }
 
 .seller-cards-container.slide-left {
@@ -95,7 +95,18 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease;
 }
 
-/* Убираем переходы для анимаций слайдера */
-.seller-cards-container * {
-  transition: none;
+/* Плавное появление контента только при первом рендере */
+.seller-cards-container:not(.slide-left):not(.slide-right) {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
