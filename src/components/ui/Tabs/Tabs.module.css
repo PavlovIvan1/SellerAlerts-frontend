@@ -1,0 +1,181 @@
+.tabsContainer {
+  background-color: var(--bg-primary);
+  padding: var(--spacing-sm) 0;
+  position: relative;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+}
+
+.tabsWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  user-select: none;
+  padding: 0 var(--spacing-xs);
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  flex-shrink: 0;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-card);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.tab:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tab.active {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-primary);
+}
+
+.tab.active::before {
+  opacity: 0.1;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.personName {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.personStatus {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab.active .personName {
+  color: var(--text-primary);
+  background: var(--gradient-card);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tab.active .personStatus {
+  color: var(--text-secondary);
+}
+
+/* Подсказка о навигации */
+.navigationHint {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 20;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .tabsWrapper {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .tab {
+    min-width: 160px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .personName {
+    font-size: 12px;
+  }
+  
+  .personStatus {
+    font-size: 10px;
+  }
+
+  .navigationHint {
+    font-size: 11px;
+    padding: 6px var(--spacing-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    min-width: 140px;
+    padding: 8px var(--spacing-xs);
+  }
+  
+  .personName {
+    font-size: 11px;
+  }
+  
+  .personStatus {
+    font-size: 9px;
+  }
+
+  .navigationHint {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}

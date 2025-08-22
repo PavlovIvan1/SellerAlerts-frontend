@@ -1,0 +1,94 @@
+.sellerSection {
+	background: linear-gradient(180deg, var(--bg-primary) 0%, #1a1a2e 20%, #16213e 60%, #0f3460 100%);
+	padding: var(--spacing-xxl) 0 var(--spacing-lg);
+	position: relative;
+	border-bottom-left-radius: var(--border-radius-lg);
+	border-bottom-right-radius: var(--border-radius-lg);
+}
+
+.sellerSection::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+	opacity: 0.3;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	/* padding: 0 calc(var(--spacing-sm) - 4px); */
+	position: relative;
+	z-index: 1;
+	padding: 0 7px !important;
+}
+
+.cardsGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: calc(var(--spacing-sm) - 4px);
+	margin-bottom: calc(var(--spacing-sm) - 2px);
+}
+
+.showMoreContainer {
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0;
+}
+
+.showMoreButton {
+	width: 100%;
+	background: var(--gradient-button);
+	color: var(--text-primary);
+	border: none;
+	padding: var(--spacing-sm) var(--spacing-xl);
+	font-size: 1.1rem;
+	font-weight: 500;
+	border-radius: var(--border-radius-md);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: var(--shadow-button);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.showMoreButton:hover {
+	transform: translateY(-2px);
+	transition: transform 0.3s ease;
+}
+
+.showMoreButton:active {
+	transform: translateY(0);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.cardsGrid {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: calc(var(--spacing-md) - 4px);
+	}
+	
+	.container {
+		padding: 0 var(--spacing-sm);
+	}
+}
+
+@media (max-width: 480px) {
+	.sellerSection {
+		padding: var(--spacing-lg) 0 var(--spacing-sm);
+	}
+	
+	.cardsGrid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: calc(var(--spacing-sm) - 4px);
+	}
+}
+
+@media (max-width: 370px) {
+	.cardsGrid {
+		grid-template-columns: 1fr;
+	}
+}

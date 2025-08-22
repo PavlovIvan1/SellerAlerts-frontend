@@ -1,0 +1,46 @@
+:root {
+  /* Основные цвета темной темы */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.1);
+  
+  /* Градиенты */
+  --gradient-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --gradient-card: linear-gradient(45deg, #667eea, #764ba2);
+  --gradient-button: linear-gradient(45deg, #6b81ff, #5324ee);
+  --gradient-button-hover: linear-gradient(45deg, #5324ee, #6b81ff);
+  --gradient-positive: linear-gradient(45deg, #00b894, #00cec9);
+  --gradient-negative: linear-gradient(45deg, #e17055, #d63031);
+  
+  /* Текст */
+  --text-primary: #ffffff;
+  --text-secondary: #e8e8e8;
+  --text-muted: #a0a0a0;
+  --text-accent: #d66868;
+  
+  /* Границы */
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  
+  /* Тени */
+  --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --shadow-button: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --shadow-button-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+  
+  /* Размеры */
+  --border-radius-sm: 8px;
+  --border-radius-md: 15px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 50px;
+  
+  /* Отступы */
+  --spacing-xs: 8px;
+  --spacing-sm: 15px;
+  --spacing-md: 20px;
+  --spacing-lg: 25px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 60px;
+}

@@ -1,0 +1,123 @@
+
+.SellerCard {
+	background: var(--bg-card);
+	backdrop-filter: blur(10px);
+	--card-radius: var(--border-radius-sm);
+	border-radius: var(--card-radius);
+	overflow: hidden;
+	--card-pad: calc(var(--spacing-sm) - 6px);
+	padding: var(--card-pad) !important;
+	box-sizing: border-box;
+	color: var(--text-accent);
+	width: 100%;
+	min-height: 90px !important;
+	box-shadow: var(--shadow-primary);
+	border: 1px solid var(--border-primary);
+	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.SellerCard:hover {
+	transform: translateY(-5px);
+	box-shadow: var(--shadow-hover);
+	background: var(--bg-card-hover);
+	border: 1px solid var(--border-hover);
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin: calc(-1 * var(--card-pad)) calc(-1 * var(--card-pad)) calc(var(--spacing-md) - 6px);
+}
+
+.title p {
+	background: var(--gradient-card);
+	color: var(--text-primary);
+	padding: var(--spacing-xs) var(--spacing-md);
+	border-radius: var(--card-radius) 0 var(--card-radius) 0;
+	font-size: 0.9rem;
+	font-weight: 600;
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.earnings p {
+	padding: 0;
+	border-radius: 0 var(--card-radius) 0 var(--card-radius);
+	font-size: 0.9rem;
+	font-weight: 600;
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.earnings.positive p {
+	background: var(--gradient-positive);
+	color: var(--text-primary);
+}
+
+.earnings.negative p {
+	background: var(--gradient-negative);
+	color: var(--text-primary);
+}
+
+.mainValue {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin: 0;
+	color: var(--text-primary);
+	line-height: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.SellerCard {
+		padding: var(--spacing-md);
+		min-height: 140px;
+	}
+	
+	.mainValue {
+		font-size: 2rem;
+	}
+	
+	.title p,
+	.earnings p {
+		font-size: 0.8rem;
+		padding: 6px 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.SellerCard {
+		padding: calc(var(--spacing-sm) - 10px);
+		min-height: 120px;
+	}
+	
+	.mainValue {
+		font-size: 1.6rem;
+	}
+	
+	.title p,
+	.earnings p {
+		font-size: 0.65rem;
+		padding: 4px 8px;
+	}
+}
+
+@media (max-width: 370px) {
+	.SellerCard {
+		padding: calc(var(--spacing-sm) - 12px);
+	}
+	.mainValue {
+		font-size: 1.45rem;
+	}
+
+	.title p,
+	.earnings p {
+		font-size: 0.6rem;
+	}
+}

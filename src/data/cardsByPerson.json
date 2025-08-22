@@ -1,0 +1,23 @@
+{
+  "ivanov": [
+    { "id": 1, "title": "Заказы", "money": 127.3, "earnings": 18.7, "isPercentage": false },
+    { "id": 2, "title": "Выручка", "money": 45.2, "earnings": 12.5, "isPercentage": false },
+    { "id": 3, "title": "Конверсия", "money": 23.8, "earnings": 5.2, "isPercentage": true },
+    { "id": 4, "title": "Клиенты", "money": 89.1, "earnings": 8.9, "isPercentage": false },
+    { "id": 13, "title": "Удержание", "money": 72.4, "earnings": 3.2, "isPercentage": true },
+    { "id": 14, "title": "Средний чек", "money": 15.6, "earnings": -1.1, "isPercentage": false }
+  ],
+  "petrova": [
+    { "id": 5, "title": "ROI", "money": 156.7, "earnings": -12.4, "isPercentage": true },
+    { "id": 6, "title": "Продажи", "money": 234.5, "earnings": 15.3, "isPercentage": false },
+    { "id": 7, "title": "Маржа", "money": 67.4, "earnings": 9.8, "isPercentage": true },
+    { "id": 8, "title": "Трафик", "money": 456.2, "earnings": 31.2, "isPercentage": false },
+    { "id": 8, "title": "Трафик", "money": 456.2, "earnings": 31.2, "isPercentage": false }
+  ],
+  "sidorov": [
+    { "id": 9, "title": "CTR", "money": 12.3, "earnings": 2.1, "isPercentage": true },
+    { "id": 10, "title": "Доход", "money": 178.9, "earnings": -7.5, "isPercentage": false },
+    { "id": 11, "title": "Эффективность", "money": 89.7, "earnings": 7.4, "isPercentage": true },
+    { "id": 12, "title": "Конверсия", "money": 18.2, "earnings": -3.1, "isPercentage": true }
+  ]
+}
