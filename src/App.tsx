@@ -9,6 +9,7 @@ export function App() {
   const [personId, setPersonId] = useState('ivanov')
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [displayPersonId, setDisplayPersonId] = useState('ivanov')
   const appRef = useRef<HTMLDivElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -28,6 +29,7 @@ export function App() {
       setSlideDirection('left')
       setTimeout(() => {
         setPersonId(people[currentIndex + 1].id)
+        setDisplayPersonId(people[currentIndex + 1].id)
         setSlideDirection(null)
         setIsTransitioning(false)
       }, 300)
@@ -42,10 +44,17 @@ export function App() {
       setSlideDirection('right')
       setTimeout(() => {
         setPersonId(people[currentIndex - 1].id)
+        setDisplayPersonId(people[currentIndex - 1].id)
         setSlideDirection(null)
         setIsTransitioning(false)
       }, 300)
     }
+  }
+
+  const handlePersonSelect = (newPersonId: string) => {
+    if (isTransitioning) return
+    setPersonId(newPersonId)
+    setDisplayPersonId(newPersonId)
   }
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -137,9 +146,9 @@ export function App() {
         style={{ cursor: isDragging ? 'grabbing' : 'default' }}
       >
         <Header />
-        <Tabs selectedId={personId} onSelect={setPersonId} />
+        <Tabs selectedId={personId} onSelect={handlePersonSelect} />
         <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
-          <SellerCards personId={personId} />
+          {!isTransitioning && <SellerCards personId={displayPersonId} />}
         </div>
       </div>
     </>

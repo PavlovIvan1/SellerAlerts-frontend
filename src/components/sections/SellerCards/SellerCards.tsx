@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import cardsByPerson from '../../../data/cardsByPerson.json'
 import { SellerCard } from '../../ui/SellerCard/SellerCard'
 import styles from './SellerCards.module.css'
@@ -12,13 +12,18 @@ export function SellerCards({ personId }: Props) {
 	const allCards = useMemo(() => (cardsByPerson as Record<string, any[]>)[personId] ?? [], [personId])
 	const visibleCards = showAll ? allCards : allCards.slice(0, 4)
 
+	// Сбрасываем состояние showAll при смене человека
+	useEffect(() => {
+		setShowAll(false)
+	}, [personId])
+
 	return (
 		<section className={styles.sellerSection}>
 			<div className={styles.container}>
 				<div className={styles.cardsGrid}>
 					{visibleCards.map((card) => (
 						<SellerCard
-							key={card.id}
+							key={`${personId}-${card.id}`}
 							title={card.title}
 							money={card.money}
 							earnings={card.earnings}

@@ -11,7 +11,6 @@
     { "id": 5, "title": "ROI", "money": 156.7, "earnings": -12.4, "isPercentage": true },
     { "id": 6, "title": "Продажи", "money": 234.5, "earnings": 15.3, "isPercentage": false },
     { "id": 7, "title": "Маржа", "money": 67.4, "earnings": 9.8, "isPercentage": true },
-    { "id": 8, "title": "Трафик", "money": 456.2, "earnings": 31.2, "isPercentage": false },
     { "id": 8, "title": "Трафик", "money": 456.2, "earnings": 31.2, "isPercentage": false }
   ],
   "sidorov": [
