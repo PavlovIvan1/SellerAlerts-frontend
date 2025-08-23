@@ -47,16 +47,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Стили для слайдера */
-.seller-cards-container {
+.seller-cards-container,
+.company-info-container {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   will-change: transform, opacity;
 }
 
-.seller-cards-container.slide-left {
+.seller-cards-container.slide-left,
+.company-info-container.slide-left {
   animation: slideOutLeft 0.3s ease-in-out;
 }
 
-.seller-cards-container.slide-right {
+.seller-cards-container.slide-right,
+.company-info-container.slide-right {
   animation: slideOutRight 0.3s ease-in-out;
 }
 
@@ -96,7 +99,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Плавное появление контента только при первом рендере */
-.seller-cards-container:not(.slide-left):not(.slide-right) {
+.seller-cards-container:not(.slide-left):not(.slide-right),
+.company-info-container:not(.slide-left):not(.slide-right) {
   animation: fadeIn 0.3s ease-in-out;
 }
 

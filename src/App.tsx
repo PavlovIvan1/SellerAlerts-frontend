@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { CompanyInfo } from './components/sections/CompanyInfo/CompanyInfo'
 import { SellerCards } from './components/sections/SellerCards/SellerCards'
 import { Header } from './components/ui/Header/Header'
 import { Tabs } from './components/ui/Tabs/Tabs'
@@ -149,6 +150,9 @@ export function App() {
         <Tabs selectedId={personId} onSelect={handlePersonSelect} />
         <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
           <SellerCards personId={displayPersonId} />
+        </div>
+        <div className={`company-info-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
+          <CompanyInfo personId={displayPersonId} />
         </div>
       </div>
     </>
