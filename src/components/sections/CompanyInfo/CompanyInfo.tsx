@@ -150,7 +150,7 @@ export function CompanyInfo({ personId }: Props) {
             <div className={styles.infoCard}>
               <h3 className={styles.cardTitle}>Виды деятельности</h3>
               <div className={styles.activitiesList}>
-                {company.activities.map((activity, index) => (
+                {company.activities?.map((activity, index) => (
                   <div key={index} className={styles.activityItem}>
                     <span className={styles.activityDot}>•</span>
                     <span className={styles.activityText}>{activity}</span>
@@ -164,15 +164,15 @@ export function CompanyInfo({ personId }: Props) {
               <div className={styles.infoGrid}>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>Банк:</span>
-                  <span className={styles.value}>{company.bankDetails.bank}</span>
+                  <span className={styles.value}>{company.bankDetails?.bank}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>Счет:</span>
-                  <span className={styles.value}>{company.bankDetails.account}</span>
+                  <span className={styles.value}>{company.bankDetails?.account}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className={styles.label}>БИК:</span>
-                  <span className={styles.value}>{company.bankDetails.bik}</span>
+                  <span className={styles.value}>{company.bankDetails?.bik}</span>
                 </div>
               </div>
             </div>
