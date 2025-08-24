@@ -11,6 +11,9 @@
   margin: 0 auto;
   padding: 0 var(--spacing-md);
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .tabs {
@@ -22,6 +25,7 @@
   scroll-behavior: smooth;
   user-select: none;
   padding: 0 var(--spacing-xs);
+  flex: 1;
 }
 
 .tabs::-webkit-scrollbar {
@@ -111,7 +115,6 @@
   color: var(--text-secondary);
 }
 
-/* Подсказка о навигации */
 .navigationHint {
   position: absolute;
   top: -40px;
@@ -135,7 +138,6 @@
   100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .tabsWrapper {
     padding: 0 var(--spacing-sm);
@@ -177,5 +179,50 @@
   .navigationHint {
     font-size: 10px;
     padding: 4px 8px;
+  }
+}
+
+.addTokenButton {
+  background: var(--gradient-button);
+  border: none;
+  border-radius: var(--border-radius-md);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-button);
+}
+
+.addTokenButton:hover {
+  background: var(--gradient-button-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.addTokenButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .addTokenButton {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .addTokenButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .addTokenButton svg {
+    width: 16px;
+    height: 16px;
   }
 }

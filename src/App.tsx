@@ -15,6 +15,7 @@ export function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const people = peopleData
 
@@ -59,18 +60,18 @@ export function App() {
   }
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (isModalOpen) return
     setIsDragging(true)
     setStartX(e.clientX)
     setStartY(e.clientY)
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || isTransitioning) return
+    if (!isDragging || isTransitioning || isModalOpen) return
     
     const deltaX = e.clientX - startX
     const deltaY = e.clientY - startY
     
-    // Проверяем, что свайп больше по горизонтали чем по вертикали
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 80) {
       if (deltaX > 0) {
         goToPreviousPerson()
@@ -89,15 +90,15 @@ export function App() {
     setIsDragging(false)
   }
 
-  // Touch events для мобильных устройств
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (isModalOpen) return
     setIsDragging(true)
     setStartX(e.touches[0].clientX)
     setStartY(e.touches[0].clientY)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || isTransitioning) return
+    if (!isDragging || isTransitioning || isModalOpen) return
     
     const deltaX = e.touches[0].clientX - startX
     const deltaY = e.touches[0].clientY - startY
@@ -116,9 +117,10 @@ export function App() {
     setIsDragging(false)
   }
 
-  // Добавляем обработчики клавиш для навигации
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isModalOpen) return
+      
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
         goToPreviousPerson()
@@ -130,7 +132,7 @@ export function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [personId, isTransitioning])
+  }, [personId, isTransitioning, isModalOpen])
 
   return (
     <>
@@ -147,7 +149,7 @@ export function App() {
         style={{ cursor: isDragging ? 'grabbing' : 'default' }}
       >
         <Header />
-        <Tabs selectedId={personId} onSelect={handlePersonSelect} />
+        <Tabs selectedId={personId} onSelect={handlePersonSelect} onModalStateChange={setIsModalOpen} />
         <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
           <SellerCards personId={displayPersonId} />
         </div>

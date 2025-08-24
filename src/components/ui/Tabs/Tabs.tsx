@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import peopleData from '../../../data/people.json'
+import { TokenModal } from '../TokenModal/TokenModal'
 import styles from './Tabs.module.css'
 
 interface Person {
@@ -11,14 +12,19 @@ interface Person {
 interface TabsProps {
   selectedId: string
   onSelect: (id: string) => void
+  onModalStateChange: (isOpen: boolean) => void
 }
 
-export function Tabs({ selectedId, onSelect }: TabsProps) {
+export function Tabs({ selectedId, onSelect, onModalStateChange }: TabsProps) {
   const people: Person[] = peopleData
   const tabsRef = useRef<HTMLDivElement>(null)
   const [showNavigationHint, setShowNavigationHint] = useState(false)
+  const [isTokenModalOpen, setIsTokenModalOpen] = useState(false)
 
-  // Автоматическая прокрутка к активной вкладке
+  useEffect(() => {
+    onModalStateChange(isTokenModalOpen)
+  }, [isTokenModalOpen, onModalStateChange])
+
   useEffect(() => {
     const activeTab = tabsRef.current?.querySelector(`[data-id="${selectedId}"]`) as HTMLElement
     if (activeTab && tabsRef.current) {
@@ -34,7 +40,6 @@ export function Tabs({ selectedId, onSelect }: TabsProps) {
     }
   }, [selectedId])
 
-  // Показываем подсказку о навигации при первом посещении
   useEffect(() => {
     const hasSeenHint = localStorage.getItem('navigation-hint-seen')
     if (!hasSeenHint) {
@@ -45,34 +50,50 @@ export function Tabs({ selectedId, onSelect }: TabsProps) {
   }, [])
 
   return (
-    <div className={styles.tabsContainer}>
-      <div className={styles.tabsWrapper}>
-        {/* Подсказка о свайпах */}
-        {showNavigationHint && (
-          <div className={styles.navigationHint}>
-            <span>Свайпните влево или вправо для навигации</span>
-          </div>
-        )}
+    <>
+      <div className={styles.tabsContainer}>
+        <div className={styles.tabsWrapper}>
+          {showNavigationHint && (
+            <div className={styles.navigationHint}>
+              <span>Свайпните влево или вправо для навигации</span>
+            </div>
+          )}
 
-        <div 
-          ref={tabsRef}
-          className={styles.tabs}
-        >
-          {people.map((person) => (
-            <button
-              key={person.id}
-              data-id={person.id}
-              className={`${styles.tab} ${selectedId === person.id ? styles.active : ''}`}
-              onClick={() => onSelect(person.id)}
-            >
-              <div className={styles.tabContent}>
-                <span className={styles.personName}>{person.name}</span>
-                <span className={styles.personStatus}>{person.status}</span>
-              </div>
-            </button>
-          ))}
+          <button 
+            className={styles.addTokenButton}
+            onClick={() => setIsTokenModalOpen(true)}
+            title="Добавить токен доступа"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
+          <div 
+            ref={tabsRef}
+            className={styles.tabs}
+          >
+            {people.map((person) => (
+              <button
+                key={person.id}
+                data-id={person.id}
+                className={`${styles.tab} ${selectedId === person.id ? styles.active : ''}`}
+                onClick={() => onSelect(person.id)}
+              >
+                <div className={styles.tabContent}>
+                  <span className={styles.personName}>{person.name}</span>
+                  <span className={styles.personStatus}>{person.status}</span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+
+      <TokenModal 
+        isOpen={isTokenModalOpen} 
+        onClose={() => setIsTokenModalOpen(false)} 
+      />
+    </>
   )
 }
