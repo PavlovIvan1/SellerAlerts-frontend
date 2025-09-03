@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import styles from './Services.module.css'
 
 interface ServiceCard {
@@ -108,29 +108,8 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
 
 export function Services({ personId }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null)
-  const [currentSlide, setCurrentSlide] = useState(0)
 
   const serviceCards = servicesByPerson[personId] || []
-
-  const scrollToSlide = (index: number) => {
-    if (sliderRef.current) {
-      const slideWidth = sliderRef.current.offsetWidth
-      sliderRef.current.scrollTo({
-        left: slideWidth * index,
-        behavior: 'smooth'
-      })
-      setCurrentSlide(index)
-    }
-  }
-
-  const handleScroll = () => {
-    if (sliderRef.current) {
-      const slideWidth = sliderRef.current.offsetWidth
-      const scrollLeft = sliderRef.current.scrollLeft
-      const newSlide = Math.round(scrollLeft / slideWidth)
-      setCurrentSlide(newSlide)
-    }
-  }
 
   // Предотвращаем глобальные свайпы при взаимодействии со слайдером
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -189,7 +168,6 @@ export function Services({ personId }: Props) {
           <div 
             ref={sliderRef}
             className={styles.slider}
-            onScroll={handleScroll}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}

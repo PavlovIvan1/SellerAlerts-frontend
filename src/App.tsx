@@ -14,17 +14,6 @@ interface Person {
   autoRenewal: boolean
 }
 
-interface TokenData {
-  token: string
-  personId: string
-  personName: string
-  phone: string
-  status: string
-  balance: string
-  autoRenewal: boolean
-  permissions: Record<string, boolean>
-}
-
 export function App() {
   const [people, setPeople] = useState<Person[]>([])
   const [personId, setPersonId] = useState('')
