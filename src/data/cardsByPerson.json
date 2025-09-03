@@ -18,5 +18,13 @@
     { "id": 10, "title": "Доход", "money": 178.9, "earnings": -7.5, "isPercentage": false },
     { "id": 11, "title": "Эффективность", "money": 89.7, "earnings": 7.4, "isPercentage": true },
     { "id": 12, "title": "Конверсия", "money": 18.2, "earnings": -3.1, "isPercentage": true }
+  ],
+  "company1": [
+    { "id": 15, "title": "Заказы", "money": 342.8, "earnings": 25.4, "isPercentage": false },
+    { "id": 16, "title": "Выручка", "money": 89.3, "earnings": 19.2, "isPercentage": false },
+    { "id": 17, "title": "Конверсия", "money": 31.7, "earnings": 7.8, "isPercentage": true },
+    { "id": 18, "title": "ROI", "money": 145.2, "earnings": 22.1, "isPercentage": true },
+    { "id": 19, "title": "Клиенты", "money": 156.4, "earnings": 14.3, "isPercentage": false },
+    { "id": 20, "title": "Средний чек", "money": 28.9, "earnings": 4.7, "isPercentage": false }
   ]
 }

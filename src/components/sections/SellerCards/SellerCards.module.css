@@ -64,6 +64,32 @@
 	transform: translateY(0);
 }
 
+.emptyState {
+	text-align: center;
+	padding: var(--spacing-xxl) var(--spacing-lg);
+	min-height: 40vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.emptyTitle {
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-md);
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.emptyDescription {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin: 0;
+	line-height: 1.5;
+	opacity: 0.8;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
 	.cardsGrid {

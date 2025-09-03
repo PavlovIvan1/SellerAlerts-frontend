@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import peopleData from '../../../data/people.json'
 import { TokenModal } from '../TokenModal/TokenModal'
 import styles from './Tabs.module.css'
 
@@ -7,16 +6,19 @@ interface Person {
   id: string
   name: string
   status: string
+  balance: string
+  autoRenewal: boolean
 }
 
 interface TabsProps {
   selectedId: string
   onSelect: (id: string) => void
   onModalStateChange: (isOpen: boolean) => void
+  people: Person[]
+  onAddPerson: (person: Person) => void
 }
 
-export function Tabs({ selectedId, onSelect, onModalStateChange }: TabsProps) {
-  const people: Person[] = peopleData
+export function Tabs({ selectedId, onSelect, onModalStateChange, people, onAddPerson }: TabsProps) {
   const tabsRef = useRef<HTMLDivElement>(null)
   const [showNavigationHint, setShowNavigationHint] = useState(false)
   const [isTokenModalOpen, setIsTokenModalOpen] = useState(false)
@@ -73,26 +75,37 @@ export function Tabs({ selectedId, onSelect, onModalStateChange }: TabsProps) {
             ref={tabsRef}
             className={styles.tabs}
           >
-            {people.map((person) => (
-              <button
-                key={person.id}
-                data-id={person.id}
-                className={`${styles.tab} ${selectedId === person.id ? styles.active : ''}`}
-                onClick={() => onSelect(person.id)}
-              >
-                <div className={styles.tabContent}>
-                  <span className={styles.personName}>{person.name}</span>
-                  <span className={styles.personStatus}>{person.status}</span>
-                </div>
-              </button>
-            ))}
+            {people.length === 0 ? (
+              <div className={styles.emptyTabs}>
+                <span className={styles.emptyMessage}>Никого не подключено</span>
+              </div>
+            ) : (
+              people.map((person) => (
+                <button
+                  key={person.id}
+                  data-id={person.id}
+                  className={`${styles.tab} ${selectedId === person.id ? styles.active : ''}`}
+                  onClick={() => onSelect(person.id)}
+                >
+                  <div className={styles.tabContent}>
+                    <span className={styles.personName}>{person.name}</span>
+                    <span className={styles.personStatus}>{person.status}</span>
+                    <span className={styles.personBalance}>Баланс: {person.balance}</span>
+                    <span className={`${styles.personAutoRenewal} ${person.autoRenewal ? styles.enabled : styles.disabled}`}>
+                      Автопродление: {person.autoRenewal ? 'вкл' : 'выкл'}
+                    </span>
+                  </div>
+                </button>
+              ))
+            )}
           </div>
         </div>
       </div>
 
       <TokenModal 
         isOpen={isTokenModalOpen} 
-        onClose={() => setIsTokenModalOpen(false)} 
+        onClose={() => setIsTokenModalOpen(false)}
+        onAddPerson={onAddPerson}
       />
     </>
   )

@@ -17,6 +17,21 @@ export function SellerCards({ personId }: Props) {
 		setShowAll(false)
 	}, [personId])
 
+	if (!personId || allCards.length === 0) {
+		return (
+			<section className={styles.sellerSection}>
+				<div className={styles.container}>
+					<div className={styles.emptyState}>
+						<h2 className={styles.emptyTitle}>Нет данных</h2>
+						<p className={styles.emptyDescription}>
+							Добавьте компанию через токен доступа
+						</p>
+					</div>
+				</div>
+			</section>
+		)
+	}
+
 	return (
 		<section className={styles.sellerSection}>
 			<div className={styles.container}>

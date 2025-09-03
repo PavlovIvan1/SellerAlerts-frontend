@@ -77,14 +77,43 @@ const companyData: Record<string, CompanyData> = {
       account: '40802810111222333444',
       bik: '044525111'
     }
+  },
+  company1: {
+    id: 'company1',
+    name: 'ООО "ТехСтарт"',
+    status: 'Активно до 30.06.2025',
+    inn: '555666777888',
+    ogrn: '1025556667778888',
+    address: 'г. Новосибирск, ул. Красный проспект, д. 100, оф. 25',
+    registrationDate: '05.01.2021',
+    director: 'Федоров Михаил Александрович',
+    phone: '+7 (383) 444-33-22',
+    email: 'info@techstart.ru',
+    activities: ['Разработка ПО', 'IT-консалтинг', 'Цифровая трансформация'],
+    bankDetails: {
+      bank: 'ПАО "Альфа-Банк"',
+      account: '40702810555666777888',
+      bik: '044525593'
+    }
   }
 }
 
 export function CompanyInfo({ personId }: Props) {
   const company = useMemo(() => companyData[personId], [personId])
 
-  if (!company) {
-    return null
+  if (!company || !personId) {
+    return (
+      <section className={styles.companySection}>
+        <div className={styles.container}>
+          <div className={styles.emptyState}>
+            <h2 className={styles.emptyTitle}>Нет данных о компании</h2>
+            <p className={styles.emptyDescription}>
+              Добавьте компанию через токен доступа
+            </p>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   const isActive = company.status.includes('Активно')

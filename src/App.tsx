@@ -1,30 +1,49 @@
 import { useEffect, useRef, useState } from 'react'
 import { CompanyInfo } from './components/sections/CompanyInfo/CompanyInfo'
 import { SellerCards } from './components/sections/SellerCards/SellerCards'
+import { Services } from './components/sections/Services/Services'
 import { Header } from './components/ui/Header/Header'
 import { Tabs } from './components/ui/Tabs/Tabs'
-import peopleData from './data/people.json'
 import './styles/global.css'
 
+interface Person {
+  id: string
+  name: string
+  status: string
+  balance: string
+  autoRenewal: boolean
+}
+
 export function App() {
-  const [personId, setPersonId] = useState('ivanov')
+  const [people, setPeople] = useState<Person[]>([])
+  const [personId, setPersonId] = useState('')
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [displayPersonId, setDisplayPersonId] = useState('ivanov')
+  const [displayPersonId, setDisplayPersonId] = useState('')
   const appRef = useRef<HTMLDivElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const people = peopleData
+  const handleAddPerson = (person: Person) => {
+    // Check if person already exists
+    if (!people.find(p => p.id === person.id)) {
+      setPeople(prev => [...prev, person])
+      // If no person is selected yet, select this one
+      if (!personId) {
+        setPersonId(person.id)
+        setDisplayPersonId(person.id)
+      }
+    }
+  }
 
   const getCurrentPersonIndex = () => {
     return people.findIndex(person => person.id === personId)
   }
 
   const goToNextPerson = () => {
-    if (isTransitioning) return
+    if (isTransitioning || people.length === 0) return
     const currentIndex = getCurrentPersonIndex()
     if (currentIndex < people.length - 1) {
       setIsTransitioning(true)
@@ -39,7 +58,7 @@ export function App() {
   }
 
   const goToPreviousPerson = () => {
-    if (isTransitioning) return
+    if (isTransitioning || people.length === 0) return
     const currentIndex = getCurrentPersonIndex()
     if (currentIndex > 0) {
       setIsTransitioning(true)
@@ -54,7 +73,7 @@ export function App() {
   }
 
   const handlePersonSelect = (newPersonId: string) => {
-    if (isTransitioning) return
+    if (isTransitioning || people.length === 0) return
     setPersonId(newPersonId)
     setDisplayPersonId(newPersonId)
   }
@@ -149,13 +168,26 @@ export function App() {
         style={{ cursor: isDragging ? 'grabbing' : 'default' }}
       >
         <Header />
-        <Tabs selectedId={personId} onSelect={handlePersonSelect} onModalStateChange={setIsModalOpen} />
-        <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
-          <SellerCards personId={displayPersonId} />
-        </div>
-        <div className={`company-info-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
-          <CompanyInfo personId={displayPersonId} />
-        </div>
+        <Tabs 
+          selectedId={personId} 
+          onSelect={handlePersonSelect} 
+          onModalStateChange={setIsModalOpen}
+          people={people}
+          onAddPerson={handleAddPerson}
+        />
+        {people.length > 0 && (
+          <>
+            <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
+              <SellerCards personId={displayPersonId} />
+            </div>
+            <div className={`services-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
+              <Services personId={displayPersonId} />
+            </div>
+            <div className={`company-info-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
+              <CompanyInfo personId={displayPersonId} />
+            </div>
+          </>
+        )}
       </div>
     </>
   )
