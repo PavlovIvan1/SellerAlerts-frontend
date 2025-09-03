@@ -1,5 +1,4 @@
 .tabsContainer {
-  background-color: var(--bg-primary);
   padding: var(--spacing-sm) 0;
   position: relative;
   z-index: 50;
@@ -33,14 +32,14 @@
 }
 
 .tab {
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--border-radius-md);
+  background: white;
+  border: 1px solid #d0d7de;
+  border-radius: var(--border-radius-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 220px;
-  min-height: 80px;
+  min-height: 60px;
   flex-shrink: 0;
   text-align: left;
   position: relative;
@@ -48,33 +47,24 @@
 }
 
 .tab::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--gradient-card);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
+  display: none;
 }
 
 .tab:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  background: white;
+  border-color: var(--text-accent);
+  transform: none;
+  box-shadow: none;
 }
 
 .tab.active {
-  background: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-primary);
+  background: #f7f8fd;
+  border-color: var(--text-accent);
+  box-shadow: none;
 }
 
 .tab.active::before {
-  opacity: 0.1;
+  display: none;
 }
 
 .tabContent {
@@ -83,6 +73,29 @@
   gap: 4px;
   position: relative;
   z-index: 1;
+}
+
+/* Conditional border radius styles */
+.onlyTab {
+  border-radius: var(--border-radius-xxl);
+}
+
+.firstTab {
+  border-top-left-radius: var(--border-radius-xxl);
+  border-bottom-left-radius: var(--border-radius-xxl);
+  border-top-right-radius: var(--border-radius-sm);
+  border-bottom-right-radius: var(--border-radius-sm);
+}
+
+.middleTab {
+  border-radius: var(--border-radius-sm);
+}
+
+.lastTab {
+  border-top-left-radius: var(--border-radius-sm);
+  border-bottom-left-radius: var(--border-radius-sm);
+  border-top-right-radius: var(--border-radius-xxl);
+  border-bottom-right-radius: var(--border-radius-xxl);
 }
 
 .personName {
@@ -104,42 +117,8 @@
   text-overflow: ellipsis;
 }
 
-.personBalance {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.2;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.personAutoRenewal {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.2;
-  padding: 2px 4px;
-  border-radius: 3px;
-  align-self: flex-start;
-  white-space: nowrap;
-}
-
-.personAutoRenewal.enabled {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-}
-
-.personAutoRenewal.disabled {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-}
-
 .tab.active .personName {
   color: var(--text-primary);
-  background: var(--gradient-card);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .tab.active .personStatus {
@@ -174,9 +153,14 @@
     padding: 0 var(--spacing-sm);
   }
   
+  .addTokenButton {
+    width: 40px;
+    height: 40px;
+  }
+  
   .tab {
     min-width: 200px;
-    min-height: 75px;
+    min-height: 55px;
     padding: var(--spacing-xs) var(--spacing-sm);
   }
   
@@ -188,15 +172,6 @@
     font-size: 13px;
   }
 
-  .personBalance {
-    font-size: 13px;
-  }
-
-  .personAutoRenewal {
-    font-size: 13px;
-    padding: 1px 3px;
-  }
-
   .navigationHint {
     font-size: 11px;
     padding: 6px var(--spacing-xs);
@@ -204,9 +179,19 @@
 }
 
 @media (max-width: 480px) {
+  .addTokenButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .addTokenButton svg {
+    width: 16px;
+    height: 16px;
+  }
+  
   .tab {
     min-width: 180px;
-    min-height: 70px;
+    min-height: 50px;
     padding: 8px var(--spacing-xs);
   }
   
@@ -218,15 +203,6 @@
     font-size: 12px;
   }
 
-  .personBalance {
-    font-size: 12px;
-  }
-
-  .personAutoRenewal {
-    font-size: 12px;
-    padding: 1px 2px;
-  }
-
   .navigationHint {
     font-size: 10px;
     padding: 4px 8px;
@@ -236,7 +212,7 @@
 .addTokenButton {
   background: var(--gradient-button);
   border: none;
-  border-radius: var(--border-radius-md);
+  border-radius: 50%;
   width: 44px;
   height: 44px;
   display: flex;
@@ -259,24 +235,6 @@
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .addTokenButton {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .addTokenButton {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .addTokenButton svg {
-    width: 16px;
-    height: 16px;
-  }
-}
 
 .emptyTabs {
   display: flex;

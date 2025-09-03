@@ -161,11 +161,16 @@ export function Services({ personId }: Props) {
     return (
       <section className={styles.servicesSection}>
         <div className={styles.container}>
-          <div className={styles.emptyState}>
-            <h2 className={styles.emptyTitle}>Нет доступных сервисов</h2>
-            <p className={styles.emptyDescription}>
-              Добавьте компанию через токен доступа
-            </p>
+          <div className={styles.servicesBlock}>
+            <div className={styles.header}>
+              <h2 className={styles.title}>Сервисы</h2>
+            </div>
+            <div className={styles.emptyState}>
+              <h2 className={styles.emptyTitle}>Нет доступных сервисов</h2>
+              <p className={styles.emptyDescription}>
+                Добавьте компанию через токен доступа
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -175,8 +180,12 @@ export function Services({ personId }: Props) {
   return (
     <section className={styles.servicesSection}>
       <div className={styles.container}>
-        
-        <div className={styles.sliderContainer}>
+        <div className={styles.servicesBlock}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Сервисы</h2>
+          </div>
+          
+          <div className={styles.sliderContainer}>
           <div 
             ref={sliderRef}
             className={styles.slider}
@@ -189,52 +198,46 @@ export function Services({ personId }: Props) {
             onMouseUp={handleMouseUp}
           >
             {serviceCards.map((card) => (
-              <div key={card.id} className={styles.serviceCard}>
-                {card.isLocked && (
-                  <div className={styles.lockIcon}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 10V8C6 5.79086 7.79086 4 10 4H14C16.2091 4 18 5.79086 18 8V10M6 10H18M6 10V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                )}
-                
-                <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
-                  
-                  {card.type === 'service' && (
-                    <>
-                      <div className={styles.imagePlaceholder}>
-                        <div className={styles.placeholderIcon}>
-                          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-                            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
-                            <path d="M21 15l-5-5L5 21" stroke="currentColor" strokeWidth="2"/>
-                          </svg>
-                        </div>
-                      </div>
-                      <button className={styles.detailsButton} disabled={card.isLocked}>
-                        Подробнее
-                      </button>
-                    </>
+              <div key={card.id} className={styles.serviceCardWrapper}>
+                <div className={styles.serviceCard}>
+                  {card.isLocked && (
+                    <div className={styles.lockIcon}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 10V8C6 5.79086 7.79086 4 10 4H14C16.2091 4 18 5.79086 18 8V10M6 10H18M6 10V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   )}
                   
-                  {card.type === 'autotables' && (
-                    <>
-                      <div className={styles.imagePlaceholder}>
-                        <div className={styles.placeholderIcon}>
-                          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                          </svg>
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                    
+                    {card.type === 'service' && (
+                      <>
+                        <div className={styles.imagePlaceholder}>
+                          <div className={styles.placeholderIcon}>
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
+                              <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
+                              <path d="M21 15l-5-5L5 21" stroke="currentColor" strokeWidth="2"/>
+                            </svg>
+                          </div>
                         </div>
-                      </div>
-                      <button className={styles.detailsButton}>
-                        Подробнее
-                      </button>
-                    </>
-                  )}
-                  
-                  {card.type === 'autogems' && (
-                    <>
+                      </>
+                    )}
+                    
+                    {card.type === 'autotables' && (
+                      <>
+                        <div className={styles.imagePlaceholder}>
+                          <div className={styles.placeholderIcon}>
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    
+                    {card.type === 'autogems' && (
                       <div className={styles.textInfo}>
                         <div className={styles.inlineInfo}>
                           <div className={styles.renewalStatus}>
@@ -249,24 +252,31 @@ export function Services({ personId }: Props) {
                           </div>
                         </div>
                       </div>
-                      <button className={styles.tableButton}>
-                        Ссылка на таблицу
-                      </button>
-                    </>
-                  )}
+                    )}
+                  </div>
                 </div>
+                
+                {/* Buttons outside the card */}
+                {card.type === 'service' && (
+                  <button className={styles.detailsButton} disabled={card.isLocked}>
+                    Подробнее
+                  </button>
+                )}
+                
+                {card.type === 'autotables' && (
+                  <button className={styles.detailsButton}>
+                    Подробнее
+                  </button>
+                )}
+                
+                {card.type === 'autogems' && (
+                  <button className={styles.tableButton}>
+                    Ссылка на таблицу
+                  </button>
+                )}
               </div>
             ))}
           </div>
-          
-          <div className={styles.dots}>
-            {serviceCards.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.dot} ${currentSlide === index ? styles.active : ''}`}
-                onClick={() => scrollToSlide(index)}
-              />
-            ))}
           </div>
         </div>
       </div>

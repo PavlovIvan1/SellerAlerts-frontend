@@ -1,21 +1,11 @@
 .sellerSection {
-	background: linear-gradient(180deg, var(--bg-primary) 0%, #1a1a2e 20%, #16213e 60%, #0f3460 100%);
-	padding: var(--spacing-xxl) 0 var(--spacing-lg);
+	background: var(--bg-primary);
+	padding: var(--spacing-md) 0 var(--spacing-lg);
 	position: relative;
-	border-bottom-left-radius: var(--border-radius-lg);
-	border-bottom-right-radius: var(--border-radius-lg);
+	border-radius: var(--border-radius-lg);
 }
 
-.sellerSection::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-	opacity: 0.3;
-}
+
 
 .container {
 	max-width: 1200px;
@@ -23,14 +13,70 @@
 	/* padding: 0 calc(var(--spacing-sm) - 4px); */
 	position: relative;
 	z-index: 1;
-	padding: 0 7px !important;
+	padding: 0 2px !important;
+}
+
+.statisticsBlock {
+	background: white;
+	border-radius: var(--border-radius-lg);
+	padding: var(--spacing-sm) !important;
+	box-shadow: none;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--spacing-lg);
+	flex-direction: row;
+}
+
+.title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+.categories {
+	display: flex;
+	gap: var(--spacing-lg);
+}
+
+.categoryButton {
+	background: none;
+	border: none;
+	padding: var(--spacing-xs) 0;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 500;
+	color: #8C929C;
+	transition: all 0.2s ease;
+	border-bottom: 2px solid transparent;
+	position: relative;
+}
+
+.categoryButton.active {
+	color: var(--text-accent);
+	border-bottom-color: var(--text-accent);
+}
+
+.categoryButton:hover:not(.active) {
+	color: var(--text-secondary);
 }
 
 .cardsGrid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: calc(var(--spacing-sm) - 4px);
-	margin-bottom: calc(var(--spacing-sm) - 2px);
+	display: flex;
+	flex-direction: row;
+	gap: var(--spacing-sm);
+	flex-wrap: nowrap;
+}
+
+.placeholderContent {
+	padding: var(--spacing-xl);
+	text-align: center;
+	color: var(--text-muted);
+	font-style: italic;
 }
 
 .showMoreContainer {
@@ -42,26 +88,22 @@
 .showMoreButton {
 	width: 100%;
 	background: var(--gradient-button);
-	color: var(--text-primary);
+	color: white;
 	border: none;
 	padding: var(--spacing-sm) var(--spacing-xl);
-	font-size: 1.1rem;
+	font-size: 1rem;
 	font-weight: 500;
 	border-radius: var(--border-radius-md);
 	cursor: pointer;
-	transition: all 0.3s ease;
-	box-shadow: var(--shadow-button);
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	transition: all 0.2s ease;
+	box-shadow: none;
+	text-transform: none;
+	letter-spacing: 0;
+	margin-top: var(--spacing-md);
 }
 
 .showMoreButton:hover {
-	transform: translateY(-2px);
-	transition: transform 0.3s ease;
-}
-
-.showMoreButton:active {
-	transform: translateY(0);
+	background: var(--gradient-button-hover);
 }
 
 .emptyState {
@@ -79,7 +121,7 @@
 	font-weight: 600;
 	color: var(--text-primary);
 	margin-bottom: var(--spacing-md);
-	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .emptyDescription {
@@ -91,12 +133,24 @@
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
+@media (max-width: 440px) {
 	.cardsGrid {
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: calc(var(--spacing-md) - 4px);
+		flex-wrap: wrap;
+		max-width: 100%;
 	}
 	
+	.header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-md);
+	}
+	
+	.categories {
+		gap: var(--spacing-md);
+	}
+}
+
+@media (max-width: 768px) {
 	.container {
 		padding: 0 var(--spacing-sm);
 	}
@@ -108,8 +162,22 @@
 	}
 	
 	.cardsGrid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: calc(var(--spacing-sm) - 4px);
+		flex-direction: row;
+		gap: var(--spacing-xs);
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+	
+	.statisticsBlock {
+		padding: var(--spacing-md);
+	}
+	
+	.title {
+		font-size: 1.3rem;
+	}
+	
+	.categoryButton {
+		font-size: 0.9rem;
 	}
 }
 

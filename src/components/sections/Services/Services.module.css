@@ -1,8 +1,7 @@
 .servicesSection {
-  background: linear-gradient(180deg, #16213e 0%, #1a1a2e 50%, #0f3460 100%);
+  background: var(--bg-primary);
   padding: var(--spacing-md) 0;
   position: relative;
-  margin: var(--spacing-sm) 0;
   border-radius: var(--border-radius-lg);
 }
 
@@ -13,7 +12,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.03)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.03)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(0,0,0,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(0,0,0,0.02)"/><circle cx="50" cy="10" r="0.5" fill="rgba(0,0,0,0.02)"/><circle cx="10" cy="60" r="0.5" fill="rgba(0,0,0,0.02)"/><circle cx="90" cy="40" r="0.5" fill="rgba(0,0,0,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
   opacity: 0.2;
 }
 
@@ -22,17 +21,32 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  padding: 0 7px;
+  padding: 0 2px !important;
 }
 
-.sectionTitle {
-  font-size: 1.8rem;
+.servicesBlock {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-sm) !important;
+  box-shadow: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  flex-direction: row;
+}
+
+.title {
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
 }
+
+
 
 .sliderContainer {
   position: relative;
@@ -44,7 +58,7 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: var(--spacing-md);
-  padding: 0 var(--spacing-sm);
+  /* padding: 0 var(--spacing-sm); */
   scrollbar-width: none;
   -ms-overflow-style: none;
   touch-action: pan-x;
@@ -54,26 +68,31 @@
   display: none;
 }
 
+.serviceCardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
 .serviceCard {
-  min-width: 200px;
+  width: 280px;
   height: 160px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border: 1px solid #e0e0e0;
   border-radius: var(--border-radius-md);
   padding: var(--spacing-sm);
-  scroll-snap-align: center;
   position: relative;
   transition: all 0.3s ease;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
 }
 
 .serviceCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: #d0d0d0;
 }
 
 .lockIcon {
@@ -110,8 +129,8 @@
 .imagePlaceholder {
   flex: 1;
   min-height: 60px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-primary);
   border-radius: var(--border-radius-sm);
   display: flex;
   align-items: center;
@@ -176,9 +195,9 @@
 }
 
 .detailsButton {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-primary);
+  background: #F5F9FD;
+  color: var(--text-accent);
+  border: none;
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
   font-weight: 500;
@@ -187,13 +206,13 @@
   transition: all 0.2s ease;
   flex-shrink: 0;
   min-height: 28px;
-  width: 100%;
+  width: 280px;
 }
 
 .detailsButton:hover:not(:disabled) {
-  background: var(--bg-card-hover);
-  color: var(--text-primary);
-  border-color: var(--border-hover);
+  background: #E6F3FF;
+  color: var(--text-accent);
+  transform: translateY(-1px);
 }
 
 .detailsButton:disabled {
@@ -202,48 +221,26 @@
 }
 
 .tableButton {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-  color: white;
+  background: #F5F9FD;
+  color: var(--text-accent);
   border: none;
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
   min-height: 28px;
-  width: 100%;
+  width: 280px;
 }
 
 .tableButton:hover {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: #E6F3FF;
+  color: var(--text-accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.4);
 }
 
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-sm);
-}
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dot.active {
-  background: var(--text-primary);
-  transform: scale(1.2);
-}
 
 .emptyState {
   text-align: center;
@@ -260,7 +257,7 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: var(--spacing-md);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .emptyDescription {
@@ -279,8 +276,13 @@
   }
   
   .serviceCard {
-    min-width: 180px;
+    width: 250px;
     height: 140px;
+  }
+  
+  .detailsButton,
+  .tableButton {
+    width: 250px;
   }
   
   .cardTitle {
@@ -307,9 +309,14 @@
   }
   
   .serviceCard {
-    min-width: 160px;
-    height: 130px;
+    width: 220px;
+    height: 120px;
     padding: var(--spacing-xs);
+  }
+  
+  .detailsButton,
+  .tableButton {
+    width: 220px;
   }
   
   .cardTitle {

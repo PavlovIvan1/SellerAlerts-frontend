@@ -80,23 +80,36 @@ export function Tabs({ selectedId, onSelect, onModalStateChange, people, onAddPe
                 <span className={styles.emptyMessage}>Никого не подключено</span>
               </div>
             ) : (
-              people.map((person) => (
-                <button
-                  key={person.id}
-                  data-id={person.id}
-                  className={`${styles.tab} ${selectedId === person.id ? styles.active : ''}`}
-                  onClick={() => onSelect(person.id)}
-                >
-                  <div className={styles.tabContent}>
-                    <span className={styles.personName}>{person.name}</span>
-                    <span className={styles.personStatus}>{person.status}</span>
-                    <span className={styles.personBalance}>Баланс: {person.balance}</span>
-                    <span className={`${styles.personAutoRenewal} ${person.autoRenewal ? styles.enabled : styles.disabled}`}>
-                      Автопродление: {person.autoRenewal ? 'вкл' : 'выкл'}
-                    </span>
-                  </div>
-                </button>
-              ))
+              people.map((person, index) => {
+                const isFirst = index === 0
+                const isLast = index === people.length - 1
+                const isOnly = people.length === 1
+                
+                let tabClassName = `${styles.tab} ${selectedId === person.id ? styles.active : ''}`
+                if (isOnly) {
+                  tabClassName += ` ${styles.onlyTab}`
+                } else if (isFirst) {
+                  tabClassName += ` ${styles.firstTab}`
+                } else if (isLast) {
+                  tabClassName += ` ${styles.lastTab}`
+                } else {
+                  tabClassName += ` ${styles.middleTab}`
+                }
+                
+                return (
+                  <button
+                    key={person.id}
+                    data-id={person.id}
+                    className={tabClassName}
+                    onClick={() => onSelect(person.id)}
+                  >
+                    <div className={styles.tabContent}>
+                      <span className={styles.personName}>{person.name}</span>
+                      <span className={styles.personStatus}>{person.status}</span>
+                    </div>
+                  </button>
+                )
+              })
             )}
           </div>
         </div>

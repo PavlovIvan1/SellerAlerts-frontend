@@ -1,123 +1,149 @@
 
 .SellerCard {
-	background: var(--bg-card);
-	backdrop-filter: blur(10px);
-	--card-radius: var(--border-radius-sm);
-	border-radius: var(--card-radius);
-	overflow: hidden;
-	--card-pad: calc(var(--spacing-sm) - 6px);
-	padding: var(--card-pad) !important;
+	background: #F5F9FD;
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-sm) var(--spacing-sm) 26px var(--spacing-sm);
 	box-sizing: border-box;
-	color: var(--text-accent);
-	width: 100%;
-	min-height: 90px !important;
-	box-shadow: var(--shadow-primary);
-	border: 1px solid var(--border-primary);
-	transition: all 0.3s ease;
+	width: 100px !important;
+	height: 88px;
+	border: none;
+	transition: none;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-shrink: 0;
+	position: relative;
 }
 
 .SellerCard:hover {
-	transform: translateY(-5px);
-	box-shadow: var(--shadow-hover);
-	background: var(--bg-card-hover);
-	border: 1px solid var(--border-hover);
+	/* Remove hover effects for flat design */
 }
 
-.top {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	margin: calc(-1 * var(--card-pad)) calc(-1 * var(--card-pad)) calc(var(--spacing-md) - 6px);
+.title {
+	width: 100%;
 }
 
 .title p {
-	background: var(--gradient-card);
-	color: var(--text-primary);
-	padding: var(--spacing-xs) var(--spacing-md);
-	border-radius: var(--card-radius) 0 var(--card-radius) 0;
-	font-size: 0.9rem;
-	font-weight: 600;
+	color: #8C929C;
+	font-size: 0.60rem !important;
+	font-weight: 500;
 	margin: 0;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	text-transform: none;
+	letter-spacing: 0;
+	padding: 0;
+	border-radius: 0;
+	background: none;
+	line-height: 1.2;
+	text-align: center;
+}
+
+.earnings {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 22px;
 }
 
 .earnings p {
-	padding: 0;
-	border-radius: 0 var(--card-radius) 0 var(--card-radius);
-	font-size: 0.9rem;
-	font-weight: 600;
+	font-size: 0.75rem;
+	font-weight: 500;
 	margin: 0;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	padding: 0;
+	border-radius: 0;
+	color: white;
+	line-height: 1.2;
 }
 
 .earnings.positive p {
-	background: var(--gradient-positive);
-	color: var(--text-primary);
+	background-color: #F9E900;
+	color: rgb(0, 0, 0);
+	padding: 4px 0;
+	border-radius: var(--border-radius-md) var(--border-radius-md);
+	display: block;
+	width: 100%;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 1rem;
 }
 
 .earnings.negative p {
-	background: var(--gradient-negative);
-	color: var(--text-primary);
+	background-color: #8C929C;
+	color: white;
+	padding: 4px 0;
+	border-radius: var(--border-radius-md) var(--border-radius-md);
+	display: block;
+	width: 100%;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 1rem;
 }
 
 .mainValue {
-	font-size: 2.5rem;
+	font-size: 1.3rem !important;
 	font-weight: 700;
-	margin: 0;
+	margin-top: 12px;
 	color: var(--text-primary);
-	line-height: 1;
+	line-height: 1.2;
+	width: 100%;
+	text-align: center;
+	z-index: 2;
+	position: relative;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
 	.SellerCard {
-		padding: var(--spacing-md);
-		min-height: 140px;
+		width: 100px !important;
+		height: 88px;
+		padding: var(--spacing-sm);
+		flex-shrink: 0;
 	}
 	
 	.mainValue {
-		font-size: 2rem;
+		font-size: 1.1rem;
 	}
 	
 	.title p,
 	.earnings p {
-		font-size: 0.8rem;
-		padding: 6px 12px;
+		font-size: 0.75rem;
 	}
 }
 
 @media (max-width: 480px) {
 	.SellerCard {
-		padding: calc(var(--spacing-sm) - 10px);
-		min-height: 120px;
+		width: 92px !important;
+		height: 88px;
+		padding: var(--spacing-xs);
+		flex-shrink: 0;
 	}
 	
 	.mainValue {
-		font-size: 1.6rem;
+		font-size: 1rem;
 	}
 	
 	.title p,
 	.earnings p {
-		font-size: 0.65rem;
-		padding: 4px 8px;
+		font-size: 0.7rem;
 	}
 }
 
 @media (max-width: 370px) {
 	.SellerCard {
-		padding: calc(var(--spacing-sm) - 12px);
+		width: 100px !important;
+		height: 88px;
+		padding: var(--spacing-xs);
+		flex-shrink: 0;
 	}
+	
 	.mainValue {
-		font-size: 1.45rem;
+		font-size: 0.9rem;
 	}
 
 	.title p,
 	.earnings p {
-		font-size: 0.6rem;
+		font-size: 0.65rem;
 	}
 }

@@ -1,14 +1,13 @@
 .companySection {
-  background: linear-gradient(180deg, #0f3460 0%, #16213e 40%, #1a1a2e 80%, var(--bg-primary) 100%);
+  background: var(--bg-primary);
   padding: var(--spacing-xxl) 0 var(--spacing-lg);
   position: relative;
   min-height: 100vh;
   border-top-left-radius: var(--border-radius-lg);
   border-top-right-radius: var(--border-radius-lg);
-  /* border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  border-right: 1px solid rgba(255, 255, 255, 0.1); */
-  margin-top: var(--spacing-lg);
+  /* border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1); */
 }
 
 .companySection::before {
@@ -18,7 +17,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.03)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.03)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(0,0,0,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(0,0,0,0.02)"/><circle cx="50" cy="10" r="0.5" fill="rgba(0,0,0,0.02)"/><circle cx="10" cy="60" r="0.5" fill="rgba(0,0,0,0.02)"/><circle cx="90" cy="40" r="0.5" fill="rgba(0,0,0,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
   opacity: 0.2;
 }
 
@@ -41,7 +40,7 @@
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 var(--spacing-md) 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 1px;
 }
 
@@ -87,19 +86,19 @@
 }
 
 .infoCard {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-card);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-primary);
   border-radius: var(--border-radius-md);
   padding: var(--spacing-xl);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-primary);
   transition: all 0.3s ease;
 }
 
 .infoCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-hover);
 }
 
 .cardTitle {
@@ -108,7 +107,7 @@
   color: var(--text-primary);
   margin: 0 0 var(--spacing-lg) 0;
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid var(--border-primary);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -125,7 +124,7 @@
   align-items: flex-start;
   gap: var(--spacing-md);
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .infoItem:last-child {
@@ -160,7 +159,7 @@
   align-items: flex-start;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .activityItem:last-child {
@@ -196,7 +195,7 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: var(--spacing-md);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .emptyDescription {

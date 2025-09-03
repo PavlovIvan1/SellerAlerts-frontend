@@ -1,5 +1,4 @@
 .header {
-	background-color: var(--bg-primary);
 	/* border-bottom: 1px solid var(--border-primary); */
 	/* position: sticky; */
 	top: 0;
@@ -17,14 +16,28 @@
 	height: 70px;
 }
 
-.logo h1 {
-	color: var(--text-primary);
-	font-size: 1.8rem;
+.logo {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+}
+
+.appTitle {
+	font-size: 1.4rem;
 	font-weight: 700;
-	background: var(--gradient-card);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+	color: var(--text-primary);
+	letter-spacing: 0.5px;
+}
+
+.appTitle .colon {
+	color: #FF8C00;
+}
+
+.greeting {
+	font-size: 0.9rem;
+	font-weight: 400;
+	color: var(--text-muted);
 }
 
 .userSection {
@@ -79,8 +92,12 @@
 		height: 60px;
 	}
 	
-	.logo h1 {
-		font-size: 1.5rem;
+	.appTitle {
+		font-size: 1.2rem;
+	}
+	
+	.greeting {
+		font-size: 0.8rem;
 	}
 	
 	.userName {
@@ -93,8 +110,12 @@
 		height: 55px;
 	}
 	
-	.logo h1 {
-		font-size: 1.3rem;
+	.appTitle {
+		font-size: 1.1rem;
+	}
+	
+	.greeting {
+		font-size: 0.75rem;
 	}
 	
 	.userName {

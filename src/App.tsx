@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { CompanyInfo } from './components/sections/CompanyInfo/CompanyInfo'
 import { SellerCards } from './components/sections/SellerCards/SellerCards'
 import { Services } from './components/sections/Services/Services'
 import { Header } from './components/ui/Header/Header'
 import { Tabs } from './components/ui/Tabs/Tabs'
+import namesData from './data/names.json'
 import './styles/global.css'
 
 interface Person {
@@ -12,6 +12,17 @@ interface Person {
   status: string
   balance: string
   autoRenewal: boolean
+}
+
+interface TokenData {
+  token: string
+  personId: string
+  personName: string
+  phone: string
+  status: string
+  balance: string
+  autoRenewal: boolean
+  permissions: Record<string, boolean>
 }
 
 export function App() {
@@ -25,6 +36,11 @@ export function App() {
   const [startX, setStartX] = useState(0)
   const [startY, setStartY] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const getCurrentPersonName = () => {
+    if (!personId) return undefined
+    return (namesData as Record<string, string>)[personId]
+  }
 
   const handleAddPerson = (person: Person) => {
     // Check if person already exists
@@ -167,14 +183,16 @@ export function App() {
         onTouchEnd={handleTouchEnd}
         style={{ cursor: isDragging ? 'grabbing' : 'default' }}
       >
-        <Header />
-        <Tabs 
-          selectedId={personId} 
-          onSelect={handlePersonSelect} 
-          onModalStateChange={setIsModalOpen}
-          people={people}
-          onAddPerson={handleAddPerson}
-        />
+        <div className="headerTabsBlock">
+          <Header currentPersonName={getCurrentPersonName()} />
+          <Tabs 
+            selectedId={personId} 
+            onSelect={handlePersonSelect} 
+            onModalStateChange={setIsModalOpen}
+            people={people}
+            onAddPerson={handleAddPerson}
+          />
+        </div>
         {people.length > 0 && (
           <>
             <div className={`seller-cards-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
@@ -183,9 +201,9 @@ export function App() {
             <div className={`services-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
               <Services personId={displayPersonId} />
             </div>
-            <div className={`company-info-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
+            {/* <div className={`company-info-container ${slideDirection ? `slide-${slideDirection}` : ''}`}>
               <CompanyInfo personId={displayPersonId} />
-            </div>
+            </div> */}
           </>
         )}
       </div>

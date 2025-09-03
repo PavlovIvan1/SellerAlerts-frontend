@@ -1,40 +1,42 @@
 :root {
-  /* Основные цвета темной темы */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #2a2a2a;
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-card-hover: rgba(255, 255, 255, 0.1);
+  /* Основные цвета светлой темы */
+  --bg-site: #F3F4F5;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-card-hover: rgba(0, 0, 0, 0.06);
   
   /* Градиенты */
-  --gradient-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  --gradient-card: linear-gradient(45deg, #667eea, #764ba2);
-  --gradient-button: linear-gradient(45deg, #6b81ff, #5324ee);
-  --gradient-button-hover: linear-gradient(45deg, #5324ee, #6b81ff);
+  --gradient-primary: linear-gradient(135deg, #f0f2ff 0%, #e8ebff 50%, #dfe4ff 100%);
+  --gradient-card: linear-gradient(45deg, #3C91E6, #2563eb);
+  --gradient-button: linear-gradient(45deg, #3C91E6, #2563eb);
+  --gradient-button-hover: linear-gradient(45deg, #2563eb, #3C91E6);
   --gradient-positive: linear-gradient(45deg, #00b894, #00cec9);
   --gradient-negative: linear-gradient(45deg, #e17055, #d63031);
   
   /* Текст */
-  --text-primary: #ffffff;
-  --text-secondary: #e8e8e8;
-  --text-muted: #a0a0a0;
-  --text-accent: #d66868;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-muted: #6c757d;
+  --text-accent: #3C91E6;
   
   /* Границы */
-  --border-primary: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.2);
+  --border-primary: rgba(0, 0, 0, 0.125);
+  --border-hover: rgba(0, 0, 0, 0.25);
   
   /* Тени */
-  --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
-  --shadow-button: 0 4px 15px rgba(0, 0, 0, 0.3);
-  --shadow-button-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+  --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-button-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
   
   /* Размеры */
   --border-radius-sm: 8px;
   --border-radius-md: 15px;
   --border-radius-lg: 20px;
-  --border-radius-xl: 50px;
+  --border-radius-xl: 35px;
+  --border-radius-xxl: 50px;
   
   /* Отступы */
   --spacing-xs: 8px;

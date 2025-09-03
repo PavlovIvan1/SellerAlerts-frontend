@@ -1,11 +1,20 @@
 import styles from './Header.module.css'
 
-export function Header() {
+interface HeaderProps {
+	currentPersonName?: string
+}
+
+export function Header({ currentPersonName }: HeaderProps) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
 				<div className={styles.logo}>
-					<h1>Seller Alerts</h1>
+					<div className={styles.appTitle}>
+						seller<span className={styles.colon}>:</span>alert
+					</div>
+					{currentPersonName && (
+						<div className={styles.greeting}>Привет, {currentPersonName}!</div>
+					)}
 				</div>
 				
 				<div className={styles.userSection}>
