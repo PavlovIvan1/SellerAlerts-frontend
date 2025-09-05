@@ -1,10 +1,32 @@
 import { useEffect, useMemo, useState } from 'react'
 import cardsByPerson from '../../../data/cardsByPerson.json'
+import categoriesByPerson from '../../../data/categoriesByPerson.json'
+import productsByPerson from '../../../data/productsByPerson.json'
 import { SellerCard } from '../../ui/SellerCard/SellerCard'
 import styles from './SellerCards.module.css'
 
 interface Props {
   personId: string
+}
+
+interface Product {
+  id: string
+  name: string
+  orders: number
+  ordersAmount: string
+  drr: string
+  ctr: string
+  cpc: string
+}
+
+interface Category {
+  id: string
+  name: string
+  orders: number
+  ordersAmount: string
+  drr: string
+  ctr: string
+  cpc: string
 }
 
 type StatCategory = 'полная' | 'артикул' | 'категория'
@@ -13,6 +35,8 @@ export function SellerCards({ personId }: Props) {
 	 const [activeCategory, setActiveCategory] = useState<StatCategory>('полная')
 	 const [showAll, setShowAll] = useState(false)
 	 const allCards = useMemo(() => (cardsByPerson as Record<string, any[]>)[personId] ?? [], [personId])
+	 const products = useMemo(() => (productsByPerson as Record<string, Product[]>)[personId] ?? [], [personId])
+	 const categories = useMemo(() => (categoriesByPerson as Record<string, Category[]>)[personId] ?? [], [personId])
 
 	 // Сбрасываем активную категорию и показ всех карт при смене человека
 	 useEffect(() => {
@@ -83,10 +107,72 @@ export function SellerCards({ personId }: Props) {
 						 </>
 					 )}
 					 
-					 {activeCategory !== 'полная' && (
-						 <div className={styles.placeholderContent}>
-							 <p>Содержимое для категории "{activeCategory}" будет добавлено позже</p>
-						 </div>
+					 {activeCategory === 'артикул' && (
+						 <>  
+							 {products.length > 0 ? (
+								 <div className={styles.productsTable}>
+									 <div className={styles.tableHeader}>
+										 <div className={styles.headerCell}>Заказы</div>
+										 <div className={styles.headerCell}>ДРР</div>
+										 <div className={styles.headerCell}>CTR</div>
+										 <div className={styles.headerCell}>CPC</div>
+									 </div>
+									 <div className={styles.tableBody}>
+										 {products.map((product, index) => (
+											 <div key={product.id} className={styles.tableRow}>
+												 <div className={styles.productCell}>
+													 <div className={styles.productName}>{index + 1}. {product.name}</div>
+													 <div className={styles.productDataRow}>
+														 <div className={styles.dataColumn}>{product.orders} ({product.ordersAmount})</div>
+														 <div className={styles.dataColumn}>{product.drr}</div>
+														 <div className={styles.dataColumn}>{product.ctr}</div>
+														 <div className={styles.dataColumn}>{product.cpc}</div>
+													 </div>
+												 </div>
+											 </div>
+										 ))}
+									 </div>
+								 </div>
+							 ) : (
+								 <div className={styles.emptyProducts}>
+									 <p>Данные по товарам отсутствуют</p>
+								 </div>
+							 )}
+						 </>
+					 )}
+					 
+					 {activeCategory === 'категория' && (
+						 <>  
+							 {categories.length > 0 ? (
+								 <div className={styles.productsTable}>
+									 <div className={styles.tableHeader}>
+										 <div className={styles.headerCell}>Заказы</div>
+										 <div className={styles.headerCell}>ДРР</div>
+										 <div className={styles.headerCell}>CTR</div>
+										 <div className={styles.headerCell}>CPC</div>
+									 </div>
+									 <div className={styles.tableBody}>
+										 {categories.map((category, index) => (
+											 <div key={category.id} className={styles.tableRow}>
+												 <div className={styles.productCell}>
+													 <div className={styles.productName}>{index + 1}. {category.name}</div>
+													 <div className={styles.productDataRow}>
+														 <div className={styles.dataColumn}>{category.orders} ({category.ordersAmount})</div>
+														 <div className={styles.dataColumn}>{category.drr}</div>
+														 <div className={styles.dataColumn}>{category.ctr}</div>
+														 <div className={styles.dataColumn}>{category.cpc}</div>
+													 </div>
+												 </div>
+											 </div>
+										 ))}
+									 </div>
+								 </div>
+							 ) : (
+								 <div className={styles.emptyProducts}>
+									 <p>Данные по категориям отсутствуют</p>
+								 </div>
+							 )}
+						 </>
 					 )}
 				 </div>
 			 </div>

@@ -4,25 +4,33 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease-out;
 }
 
+.overlay.closing {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
 .modal {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-primary);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   max-width: 500px;
-  width: 90%;
-  max-height: 80vh;
+  width: 100%;
+  max-height: 85vh;
   overflow-y: auto;
   box-shadow: var(--shadow-primary);
-  animation: slideIn 0.3s ease-out;
+  animation: slideUpFromBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.closing {
+  animation: slideDownToBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .header {
@@ -251,25 +259,32 @@
 }
 
 .inputWrapper {
+  position: relative;
   display: flex;
-  gap: var(--spacing-sm);
-  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+  align-items: stretch;
+}
+
+.tokenInputWrapper {
+  position: relative;
+  flex: 1;
 }
 
 .input {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--border-radius-md);
+  border: none;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-xs) var(--border-radius-xs);
   padding: var(--spacing-sm) var(--spacing-md);
   color: var(--text-primary);
   font-size: 14px;
   transition: all 0.2s ease;
+  width: 100%;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--border-hover);
   background: var(--bg-card-hover);
 }
 
@@ -285,7 +300,7 @@
 .analyzeButton {
   background: var(--gradient-button);
   border: none;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xs) var(--border-radius-xs) var(--border-radius-lg) var(--border-radius-lg);
   padding: var(--spacing-sm);
   color: white;
   cursor: pointer;
@@ -295,6 +310,7 @@
   justify-content: center;
   min-width: 44px;
   height: 44px;
+  width: 100%;
 }
 
 .analyzeButton:hover:not(:disabled) {
@@ -307,6 +323,26 @@
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
+}
+
+.toggleButton {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.toggleButton:hover {
+  color: var(--text-secondary);
 }
 
 .analyzing {
@@ -403,14 +439,34 @@
   }
 }
 
-@keyframes slideIn {
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUpFromBottom {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.95);
+    transform: translateY(100%);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownToBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 
@@ -421,8 +477,9 @@
 
 @media (max-width: 768px) {
   .modal {
-    width: 95%;
+    width: 100%;
     max-height: 90vh;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   }
   
   .header {
@@ -437,21 +494,16 @@
     font-size: 16px;
   }
   
-  .inputWrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
   .analyzeButton {
-    width: 100%;
-    height: 44px;
+    height: 48px;
   }
 }
 
 @media (max-width: 480px) {
   .modal {
-    width: 98%;
+    width: 100%;
     max-height: 95vh;
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   }
   
   .header {

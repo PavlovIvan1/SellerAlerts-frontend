@@ -32,6 +32,7 @@
   --shadow-button-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
   
   /* Размеры */
+  --border-radius-xs: 4px;
   --border-radius-sm: 8px;
   --border-radius-md: 15px;
   --border-radius-lg: 20px;

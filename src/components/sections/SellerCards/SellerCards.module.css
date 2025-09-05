@@ -69,7 +69,9 @@
 	display: flex;
 	flex-direction: row;
 	gap: var(--spacing-sm);
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
+	max-width: 100%;
+	justify-content: flex-start;
 }
 
 .placeholderContent {
@@ -132,11 +134,102 @@
 	opacity: 0.8;
 }
 
+/* Products Table Styles */
+.productsTable {
+	margin-top: var(--spacing-md);
+	width: 100%;
+}
+
+.tableHeader {
+	display: flex;
+	gap: var(--spacing-sm);
+	margin-bottom: var(--spacing-sm);
+	padding: 0 var(--spacing-xs);
+}
+
+.headerCell {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	text-align: center;
+	flex: 1;
+}
+
+.tableBody {
+	max-height: 300px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-md);
+}
+
+.tableRow {
+	transition: all 0.2s ease;
+}
+
+.productCell {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-xs);
+}
+
+.productName {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	line-height: 1.3;
+	margin-bottom: var(--spacing-xs);
+}
+
+.productDataRow {
+	display: flex;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-xs);
+}
+
+.dataColumn {
+	flex: 1;
+	font-size: 0.75rem;
+	color: var(--text-primary);
+	font-weight: 500;
+	background: #f0f4f8;
+	padding: 4px 8px;
+	border-radius: var(--border-radius-sm);
+	text-align: center;
+}
+
+.emptyProducts {
+	padding: var(--spacing-xl);
+	text-align: center;
+	color: var(--text-secondary);
+}
+
+.emptyProducts p {
+	margin: 0;
+	font-size: 1rem;
+}
+
 /* Адаптивность */
+/* Для устройств шире 440px - максимум 4 карточки в ряд */
+@media (min-width: 441px) {
+	.cardsGrid {
+		flex-wrap: wrap;
+		max-width: 100%;
+		justify-content: flex-start;
+	}
+	
+	/* Ограничиваем ширину каждой карточки для максимум 4 в ряд */
+	.cardsGrid > * {
+		max-width: calc(25% - var(--spacing-sm) * 3 / 4);
+		flex: 0 0 auto;
+	}
+}
+
 @media (max-width: 440px) {
 	.cardsGrid {
 		flex-wrap: wrap;
 		max-width: 100%;
+		justify-content: flex-start;
 	}
 	
 	.header {
@@ -179,10 +272,56 @@
 	.categoryButton {
 		font-size: 0.9rem;
 	}
+	
+	.headerCell {
+		font-size: 0.75rem;
+	}
+	
+	.productName {
+		font-size: 0.8rem;
+	}
+	
+	.productDataRow {
+		gap: var(--spacing-xs);
+	}
+	
+	.dataColumn {
+		font-size: 0.7rem;
+		padding: 3px 6px;
+	}
+	
+	.tableBody {
+		max-height: 250px;
+	}
 }
 
 @media (max-width: 370px) {
 	.cardsGrid {
 		grid-template-columns: 1fr;
+	}
+	
+	.headerCell {
+		font-size: 0.7rem;
+	}
+	
+	.productName {
+		font-size: 0.75rem;
+	}
+	
+	.productDataRow {
+		gap: 4px;
+	}
+	
+	.dataColumn {
+		font-size: 0.65rem;
+		padding: 2px 4px;
+	}
+	
+	.tableBody {
+		max-height: 200px;
+	}
+	
+	.tableRow {
+		padding: var(--spacing-xs);
 	}
 }

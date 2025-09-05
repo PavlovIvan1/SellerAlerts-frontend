@@ -34,11 +34,12 @@ interface TokenInfo {
 
 export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
   const [token, setToken] = useState('')
-  const [phone, setPhone] = useState('')
+  const [showToken, setShowToken] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [foundTokenInfo, setFoundTokenInfo] = useState<TokenInfo | null>(null)
   const [showConnectionInfo, setShowConnectionInfo] = useState(false)
   const [validationError, setValidationError] = useState('')
+  const [isClosing, setIsClosing] = useState(false)
   const [permissions] = useState<Permission[]>([
     { name: 'Аналитика', hasAccess: true },
     { name: 'Отзывы и вопросы', hasAccess: true },
@@ -50,8 +51,8 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
   ])
 
   const handleTokenSubmit = async () => {
-    if (!token.trim() || !phone.trim()) {
-      setValidationError('Введите токен и номер телефона')
+    if (!token.trim()) {
+      setValidationError('Введите токен')
       return
     }
     
@@ -63,13 +64,9 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
     
     setTimeout(() => {
       setIsAnalyzing(false)
-      if (tokenInfo && tokenInfo.phone === phone.trim()) {
+      if (tokenInfo) {
         setFoundTokenInfo(tokenInfo)
         setShowConnectionInfo(true)
-      } else if (tokenInfo && tokenInfo.phone !== phone.trim()) {
-        setValidationError('Неверный номер телефона для данного токена')
-        setFoundTokenInfo(null)
-        setShowConnectionInfo(false)
       } else {
         setValidationError('Токен не найден')
         setFoundTokenInfo(null)
@@ -88,22 +85,21 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
         autoRenewal: foundTokenInfo.autoRenewal
       }
       onAddPerson(person)
-      setToken('')
-      setPhone('')
-      setFoundTokenInfo(null)
-      setShowConnectionInfo(false)
-      setValidationError('')
-      onClose()
+      handleClose()
     }
   }
 
   const handleClose = () => {
-    setToken('')
-    setPhone('')
-    setFoundTokenInfo(null)
-    setShowConnectionInfo(false)
-    setValidationError('')
-    onClose()
+    setIsClosing(true)
+    setTimeout(() => {
+      setToken('')
+      setShowToken(false)
+      setFoundTokenInfo(null)
+      setShowConnectionInfo(false)
+      setValidationError('')
+      setIsClosing(false)
+      onClose()
+    }, 300) // Match animation duration
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -115,8 +111,8 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className={styles.overlay} onClick={handleClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div className={`${styles.overlay} ${isClosing ? styles.closing : ''}`} onClick={handleClose}>
+      <div className={`${styles.modal} ${isClosing ? styles.closing : ''}`} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h2 className={styles.title}>Анализ токена доступа</h2>
           <button className={styles.closeButton} onClick={handleClose}>
@@ -130,34 +126,39 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
           <div className={styles.inputSection}>
             <label className={styles.label}>Введите токен доступа:</label>
             <div className={styles.inputWrapper}>
-              <input
-                type="password"
-                className={styles.input}
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Вставьте ваш токен здесь..."
-                disabled={isAnalyzing}
-              />
-            </div>
-          </div>
-
-          <div className={styles.inputSection}>
-            <label className={styles.label}>Номер телефона:</label>
-            <div className={styles.inputWrapper}>
-              <input
-                type="tel"
-                className={styles.input}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="+7 (XXX) XXX-XX-XX"
-                disabled={isAnalyzing}
-              />
+              <div className={styles.tokenInputWrapper}>
+                <input
+                  type={showToken ? "text" : "password"}
+                  className={styles.input}
+                  value={token}
+                  onChange={(e) => setToken(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Вставьте ваш токен здесь..."
+                  disabled={isAnalyzing}
+                />
+                <button
+                  type="button"
+                  className={styles.toggleButton}
+                  onClick={() => setShowToken(!showToken)}
+                  disabled={isAnalyzing}
+                >
+                  {showToken ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1 1l22 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
               <button 
                 className={styles.analyzeButton}
                 onClick={handleTokenSubmit}
-                disabled={!token.trim() || !phone.trim() || isAnalyzing}
+                disabled={!token.trim() || isAnalyzing}
               >
                 {isAnalyzing ? (
                   <div className={styles.spinner}></div>
@@ -208,7 +209,6 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
                   setShowConnectionInfo(false)
                   setFoundTokenInfo(null)
                   setToken('')
-                  setPhone('')
                   setValidationError('')
                 }}>
                   Отмена

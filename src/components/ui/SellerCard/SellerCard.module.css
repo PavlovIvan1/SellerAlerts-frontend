@@ -4,7 +4,7 @@
 	border-radius: var(--border-radius-md);
 	padding: var(--spacing-sm) var(--spacing-sm) 26px var(--spacing-sm);
 	box-sizing: border-box;
-	width: 100px !important;
+	width: 100px;
 	height: 88px;
 	border: none;
 	transition: none;
@@ -14,6 +14,7 @@
 	align-items: flex-start;
 	flex-shrink: 0;
 	position: relative;
+	min-width: 92px;
 }
 
 .SellerCard:hover {
@@ -94,9 +95,19 @@
 }
 
 /* Адаптивность */
+/* Для устройств шире 440px - обеспечиваем правильную ширину в grid */
+@media (min-width: 441px) {
+	.SellerCard {
+		width: 100px;
+		height: 88px;
+		min-width: 92px;
+		flex-shrink: 0;
+	}
+}
+
 @media (max-width: 768px) {
 	.SellerCard {
-		width: 100px !important;
+		width: 100px;
 		height: 88px;
 		padding: var(--spacing-sm);
 		flex-shrink: 0;
@@ -114,7 +125,7 @@
 
 @media (max-width: 480px) {
 	.SellerCard {
-		width: 92px !important;
+		width: 92px;
 		height: 88px;
 		padding: var(--spacing-xs);
 		flex-shrink: 0;
@@ -132,7 +143,7 @@
 
 @media (max-width: 370px) {
 	.SellerCard {
-		width: 100px !important;
+		width: 100px;
 		height: 88px;
 		padding: var(--spacing-xs);
 		flex-shrink: 0;

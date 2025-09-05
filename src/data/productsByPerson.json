@@ -1,0 +1,136 @@
+{
+  "ivanov": [
+    {
+      "id": "product_1",
+      "name": "Рубашка мужская белая",
+      "orders": 24,
+      "ordersAmount": "72,000 ₽",
+      "drr": "15.3%",
+      "ctr": "2.8%",
+      "cpc": "45 ₽"
+    },
+    {
+      "id": "product_2", 
+      "name": "Джинсы классические",
+      "orders": 18,
+      "ordersAmount": "108,000 ₽",
+      "drr": "12.7%",
+      "ctr": "3.2%",
+      "cpc": "38 ₽"
+    },
+    {
+      "id": "product_3",
+      "name": "Кроссовки спортивные",
+      "orders": 7,
+      "ordersAmount": "42,000 ₽",
+      "drr": "18.9%",
+      "ctr": "1.9%",
+      "cpc": "67 ₽"
+    },
+    {
+      "id": "product_4",
+      "name": "Куртка демисезонная",
+      "orders": 12,
+      "ordersAmount": "144,000 ₽",
+      "drr": "14.2%",
+      "ctr": "2.5%",
+      "cpc": "52 ₽"
+    }
+  ],
+  "petrova": [
+    {
+      "id": "product_5",
+      "name": "Платье летнее синее",
+      "orders": 35,
+      "ordersAmount": "105,000 ₽",
+      "drr": "16.8%",
+      "ctr": "4.1%",
+      "cpc": "28 ₽"
+    },
+    {
+      "id": "product_6",
+      "name": "Блузка шёлковая",
+      "orders": 28,
+      "ordersAmount": "168,000 ₽",
+      "drr": "13.5%",
+      "ctr": "3.7%",
+      "cpc": "22 ₽"
+    },
+    {
+      "id": "product_7",
+      "name": "Сумка кожаная",
+      "orders": 3,
+      "ordersAmount": "45,000 ₽",
+      "drr": "21.4%",
+      "ctr": "1.2%",
+      "cpc": "95 ₽"
+    }
+  ],
+  "sidorov": [
+    {
+      "id": "product_8",
+      "name": "Футболка спортивная",
+      "orders": 15,
+      "ordersAmount": "22,500 ₽",
+      "drr": "19.7%",
+      "ctr": "2.3%",
+      "cpc": "58 ₽"
+    },
+    {
+      "id": "product_9",
+      "name": "Шорты тренировочные",
+      "orders": 9,
+      "ordersAmount": "13,500 ₽",
+      "drr": "17.1%",
+      "ctr": "2.8%",
+      "cpc": "43 ₽"
+    }
+  ],
+  "company1": [
+    {
+      "id": "product_10",
+      "name": "Холодильник Samsung RB37",
+      "orders": 8,
+      "ordersAmount": "560,000 ₽",
+      "drr": "11.2%",
+      "ctr": "1.8%",
+      "cpc": "75 ₽"
+    },
+    {
+      "id": "product_11",
+      "name": "Стиральная машина LG F2J6",
+      "orders": 12,
+      "ordersAmount": "480,000 ₽",
+      "drr": "13.9%",
+      "ctr": "2.1%",
+      "cpc": "62 ₽"
+    },
+    {
+      "id": "product_12",
+      "name": "Телевизор Sony 55X80K",
+      "orders": 6,
+      "ordersAmount": "540,000 ₽",
+      "drr": "15.6%",
+      "ctr": "1.6%",
+      "cpc": "89 ₽"
+    },
+    {
+      "id": "product_13",
+      "name": "Микроволновая печь Panasonic",
+      "orders": 22,
+      "ordersAmount": "264,000 ₽",
+      "drr": "9.8%",
+      "ctr": "3.4%",
+      "cpc": "31 ₽"
+    },
+    {
+      "id": "product_14",
+      "name": "Кофемашина Delonghi ECAM",
+      "orders": 14,
+      "ordersAmount": "420,000 ₽",
+      "drr": "12.4%",
+      "ctr": "2.7%",
+      "cpc": "47 ₽"
+    }
+  ]
+}

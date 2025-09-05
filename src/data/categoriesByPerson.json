@@ -1,0 +1,118 @@
+{
+  "ivanov": [
+    {
+      "id": "category_1",
+      "name": "Мужская одежда",
+      "orders": 45,
+      "ordersAmount": "270,000 ₽",
+      "drr": "14.2%",
+      "ctr": "3.1%",
+      "cpc": "42 ₽"
+    },
+    {
+      "id": "category_2",
+      "name": "Обувь",
+      "orders": 32,
+      "ordersAmount": "192,000 ₽",
+      "drr": "16.8%",
+      "ctr": "2.7%",
+      "cpc": "38 ₽"
+    },
+    {
+      "id": "category_3",
+      "name": "Аксессуары",
+      "orders": 28,
+      "ordersAmount": "84,000 ₽",
+      "drr": "13.5%",
+      "ctr": "2.4%",
+      "cpc": "65 ₽"
+    }
+  ],
+  "petrova": [
+    {
+      "id": "category_4",
+      "name": "Женская одежда",
+      "orders": 52,
+      "ordersAmount": "312,000 ₽",
+      "drr": "15.9%",
+      "ctr": "3.8%",
+      "cpc": "35 ₽"
+    },
+    {
+      "id": "category_5",
+      "name": "Аксессуары",
+      "orders": 19,
+      "ordersAmount": "57,000 ₽",
+      "drr": "18.2%",
+      "ctr": "2.1%",
+      "cpc": "58 ₽"
+    },
+    {
+      "id": "category_6",
+      "name": "Обувь",
+      "orders": 67,
+      "ordersAmount": "201,000 ₽",
+      "drr": "12.4%",
+      "ctr": "4.2%",
+      "cpc": "28 ₽"
+    }
+  ],
+  "sidorov": [
+    {
+      "id": "category_7",
+      "name": "Спортивная одежда",
+      "orders": 38,
+      "ordersAmount": "114,000 ₽",
+      "drr": "17.3%",
+      "ctr": "2.9%",
+      "cpc": "45 ₽"
+    },
+    {
+      "id": "category_8",
+      "name": "Спортивная обувь",
+      "orders": 24,
+      "ordersAmount": "72,000 ₽",
+      "drr": "14.7%",
+      "ctr": "2.6%",
+      "cpc": "52 ₽"
+    }
+  ],
+  "company1": [
+    {
+      "id": "category_9",
+      "name": "Крупная бытовая техника",
+      "orders": 41,
+      "ordersAmount": "1,230,000 ₽",
+      "drr": "11.8%",
+      "ctr": "1.9%",
+      "cpc": "78 ₽"
+    },
+    {
+      "id": "category_10",
+      "name": "Малая бытовая техника",
+      "orders": 33,
+      "ordersAmount": "495,000 ₽",
+      "drr": "13.2%",
+      "ctr": "2.2%",
+      "cpc": "89 ₽"
+    },
+    {
+      "id": "category_11",
+      "name": "Электроника",
+      "orders": 18,
+      "ordersAmount": "900,000 ₽",
+      "drr": "15.6%",
+      "ctr": "1.7%",
+      "cpc": "95 ₽"
+    },
+    {
+      "id": "category_12",
+      "name": "Мебель",
+      "orders": 56,
+      "ordersAmount": "672,000 ₽",
+      "drr": "10.4%",
+      "ctr": "3.1%",
+      "cpc": "34 ₽"
+    }
+  ]
+}
