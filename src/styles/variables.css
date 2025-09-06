@@ -13,7 +13,10 @@
   --gradient-button: linear-gradient(45deg, #3C91E6, #2563eb);
   --gradient-button-hover: linear-gradient(45deg, #2563eb, #3C91E6);
   --gradient-positive: linear-gradient(45deg, #00b894, #00cec9);
+  --gradient-positive-hover: linear-gradient(45deg, #00a085, #00b8b5);
   --gradient-negative: linear-gradient(45deg, #e17055, #d63031);
+  --gradient-earnings: #F9E900;
+  --gradient-earnings-hover: #e8d200;
   
   /* Текст */
   --text-primary: #212529;

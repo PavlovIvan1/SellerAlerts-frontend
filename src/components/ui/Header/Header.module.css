@@ -20,11 +20,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 2px;
+	gap: 0px;
 }
 
 .appTitle {
-	font-size: 1.4rem;
+	font-size: 1.8rem;
 	font-weight: 700;
 	color: var(--text-primary);
 	letter-spacing: 0.5px;
@@ -35,7 +35,7 @@
 }
 
 .greeting {
-	font-size: 0.9rem;
+	font-size: 1.1rem;
 	font-weight: 400;
 	color: var(--text-muted);
 }
@@ -93,11 +93,11 @@
 	}
 	
 	.appTitle {
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 	
 	.greeting {
-		font-size: 0.8rem;
+		font-size: 1rem;
 	}
 	
 	.userName {
@@ -111,11 +111,11 @@
 	}
 	
 	.appTitle {
-		font-size: 1.1rem;
+		font-size: 1.3rem;
 	}
 	
 	.greeting {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 	
 	.userName {

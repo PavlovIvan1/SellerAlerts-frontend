@@ -5,6 +5,41 @@ import productsByPerson from '../../../data/productsByPerson.json'
 import { SellerCard } from '../../ui/SellerCard/SellerCard'
 import styles from './SellerCards.module.css'
 
+// Функция для форматирования суммы с сокращением "к" для тысяч
+function formatOrdersAmount(amount: string): { mainValue: string; suffix: string } {
+	// Удаляем пробелы, запятые и валютный символ для обработки
+	const cleanAmount = amount.replace(/[\s,₽]/g, '')
+	const numericValue = parseInt(cleanAmount)
+	
+	if (numericValue >= 1000) {
+		const thousands = Math.floor(numericValue / 1000)
+		const remainder = numericValue % 1000
+		
+		if (remainder === 0) {
+			return { mainValue: thousands.toString(), suffix: 'к' }
+		} else {
+			// Если есть остаток, показываем с десятичной частью
+			const formattedValue = (numericValue / 1000).toFixed(1)
+			return { mainValue: formattedValue, suffix: 'к' }
+		}
+	} else {
+		return { mainValue: numericValue.toString(), suffix: ' ₽' }
+	}
+}
+
+// Функция для форматирования значений с символами (%, ₽)
+function formatValueWithSymbol(value: string): { mainValue: string; suffix: string } {
+	if (value.includes('%')) {
+		const numericPart = value.replace('%', '')
+		return { mainValue: numericPart, suffix: '%' }
+	} else if (value.includes('₽')) {
+		const numericPart = value.replace(/[\s₽]/g, '')
+		return { mainValue: numericPart, suffix: ' ₽' }
+	} else {
+		return { mainValue: value, suffix: '' }
+	}
+}
+
 interface Props {
   personId: string
 }
@@ -123,10 +158,50 @@ export function SellerCards({ personId }: Props) {
 												 <div className={styles.productCell}>
 													 <div className={styles.productName}>{index + 1}. {product.name}</div>
 													 <div className={styles.productDataRow}>
-														 <div className={styles.dataColumn}>{product.orders} ({product.ordersAmount})</div>
-														 <div className={styles.dataColumn}>{product.drr}</div>
-														 <div className={styles.dataColumn}>{product.ctr}</div>
-														 <div className={styles.dataColumn}>{product.cpc}</div>
+														 <div className={styles.dataColumn}>
+															 {(() => {
+																 const formatted = formatOrdersAmount(product.ordersAmount)
+																 return (
+																	 <>
+																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
+																	 </>
+																 )
+															 })()}
+														 </div>
+														 <div className={styles.dataColumn}>
+														  {(() => {
+														 	 const formatted = formatValueWithSymbol(product.drr)
+														 	 return (
+														 		 <>
+														 			 <span className={styles.mainValue}>{formatted.mainValue}</span>
+														 			 <span className={styles.suffixValue}>{formatted.suffix}</span>
+														 		 </>
+														 	 )
+														  })()}
+														 </div>
+														 <div className={styles.dataColumn}>
+														  {(() => {
+														 	 const formatted = formatValueWithSymbol(product.ctr)
+														 	 return (
+														 		 <>
+														 			 <span className={styles.mainValue}>{formatted.mainValue}</span>
+														 			 <span className={styles.suffixValue}>{formatted.suffix}</span>
+														 		 </>
+														 	 )
+														  })()}
+														 </div>
+														 <div className={styles.dataColumn}>
+														  {(() => {
+														 	 const formatted = formatValueWithSymbol(product.cpc)
+														 	 return (
+														 		 <>
+														 			 <span className={styles.mainValue}>{formatted.mainValue}</span>
+														 			 <span className={styles.suffixValue}>{formatted.suffix}</span>
+														 		 </>
+														 	 )
+														  })()}
+														 </div>
 													 </div>
 												 </div>
 											 </div>
@@ -157,10 +232,50 @@ export function SellerCards({ personId }: Props) {
 												 <div className={styles.productCell}>
 													 <div className={styles.productName}>{index + 1}. {category.name}</div>
 													 <div className={styles.productDataRow}>
-														 <div className={styles.dataColumn}>{category.orders} ({category.ordersAmount})</div>
-														 <div className={styles.dataColumn}>{category.drr}</div>
-														 <div className={styles.dataColumn}>{category.ctr}</div>
-														 <div className={styles.dataColumn}>{category.cpc}</div>
+														 <div className={styles.dataColumn}>
+													 {(() => {
+														 const formatted = formatOrdersAmount(category.ordersAmount)
+														 return (
+															 <>
+																 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																 <span className={styles.suffixValue}>{formatted.suffix}</span>
+															 </>
+														 )
+													 })()}
+												 </div>
+														 <div className={styles.dataColumn}>
+															 {(() => {
+																 const formatted = formatValueWithSymbol(category.drr)
+																 return (
+																	 <>
+																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
+																	 </>
+																 )
+															 })()}
+														 </div>
+														 <div className={styles.dataColumn}>
+															 {(() => {
+																 const formatted = formatValueWithSymbol(category.ctr)
+																 return (
+																	 <>
+																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
+																	 </>
+																 )
+															 })()}
+														 </div>
+														 <div className={styles.dataColumn}>
+															 {(() => {
+																 const formatted = formatValueWithSymbol(category.cpc)
+																 return (
+																	 <>
+																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
+																	 </>
+																 )
+															 })()}
+														 </div>
 													 </div>
 												 </div>
 											 </div>

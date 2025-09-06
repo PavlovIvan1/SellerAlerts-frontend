@@ -46,6 +46,9 @@
 	left: 0;
 	right: 0;
 	height: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .earnings p {
@@ -55,31 +58,40 @@
 	padding: 0;
 	border-radius: 0;
 	color: white;
-	line-height: 1.2;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .earnings.positive p {
 	background-color: #F9E900;
 	color: rgb(0, 0, 0);
 	padding: 4px 0;
-	border-radius: var(--border-radius-md) var(--border-radius-md);
-	display: block;
+	border-radius: var(--border-radius-md);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
-	text-align: center;
+	height: 100%;
 	box-sizing: border-box;
 	font-size: 1rem;
+	margin: 0;
 }
 
 .earnings.negative p {
 	background-color: #8C929C;
 	color: white;
 	padding: 4px 0;
-	border-radius: var(--border-radius-md) var(--border-radius-md);
-	display: block;
+	border-radius: var(--border-radius-md);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
-	text-align: center;
+	height: 100%;
 	box-sizing: border-box;
 	font-size: 1rem;
+	margin: 0;
 }
 
 .mainValue {
@@ -94,14 +106,65 @@
 	position: relative;
 }
 
+.valueNumber {
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+
+.valueSuffix {
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+}
+
+.earningsNumber {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.earningsSuffix {
+	font-size: 0.8em;
+	font-weight: 400;
+	opacity: 0.9;
+}
+
 /* Адаптивность */
-/* Для устройств шире 440px - обеспечиваем правильную ширину в grid */
-@media (min-width: 441px) {
+/* Для устройств шире 400px - уменьшаем размеры для 4 карточек в ряд */
+@media (min-width: 401px) {
 	.SellerCard {
-		width: 100px;
-		height: 88px;
-		min-width: 92px;
+		width: 85px;
+		height: 75px;
+		min-width: 80px;
 		flex-shrink: 0;
+		padding: calc(var(--spacing-xs) - 2px);
+	}
+	
+	.mainValue {
+		font-size: 1.1rem !important;
+		margin-top: 8px;
+	}
+	
+	.valueNumber {
+		font-size: 1.1rem;
+	}
+	
+	.valueSuffix {
+		font-size: 0.85rem;
+	}
+	
+	.title p {
+		font-size: 0.55rem !important;
+	}
+	
+	.earnings p,
+	.earnings.positive p,
+	.earnings.negative p {
+		font-size: 0.7rem;
+		padding: 2px 0;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -117,13 +180,21 @@
 		font-size: 1.1rem;
 	}
 	
+	.valueNumber {
+		font-size: 1.1rem;
+	}
+	
+	.valueSuffix {
+		font-size: 0.85rem;
+	}
+	
 	.title p,
 	.earnings p {
 		font-size: 0.75rem;
 	}
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
 	.SellerCard {
 		width: 92px;
 		height: 88px;
@@ -133,6 +204,14 @@
 	
 	.mainValue {
 		font-size: 1rem;
+	}
+	
+	.valueNumber {
+		font-size: 1rem;
+	}
+	
+	.valueSuffix {
+		font-size: 0.75rem;
 	}
 	
 	.title p,
@@ -151,6 +230,14 @@
 	
 	.mainValue {
 		font-size: 0.9rem;
+	}
+
+	.valueNumber {
+		font-size: 0.9rem;
+	}
+	
+	.valueSuffix {
+		font-size: 0.7rem;
 	}
 
 	.title p,

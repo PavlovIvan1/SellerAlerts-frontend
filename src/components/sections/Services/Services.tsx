@@ -1,6 +1,19 @@
-import { useRef, useState } from 'react'
-import productsByPerson from '../../../data/productsByPerson.json'
-import styles from './Services.module.css'
+import { useRef, useState } from 'react';
+import productsByPerson from '../../../data/productsByPerson.json';
+import styles from './Services.module.css';
+
+// Функция для форматирования значений с символами (%, ₽)
+function formatValueWithSymbol(value: string): { mainValue: string; suffix: string } {
+	if (value.includes('%')) {
+		const numericPart = value.replace('%', '')
+		return { mainValue: numericPart, suffix: '%' }
+	} else if (value.includes('₽')) {
+		const numericPart = value.replace(/[\s₽]/g, '')
+		return { mainValue: numericPart, suffix: ' ₽' }
+	} else {
+		return { mainValue: value, suffix: '' }
+	}
+}
 
 interface ServiceCard {
   id: string
@@ -298,9 +311,39 @@ export function Services({ personId }: Props) {
                                     <div className={styles.productAmount}>{product.ordersAmount}</div>
                                   </div>
                                   <div className={styles.dataCell}>{product.orders}</div>
-                                  <div className={styles.dataCell}>{product.drr}</div>
-                                  <div className={styles.dataCell}>{product.ctr}</div>
-                                  <div className={styles.dataCell}>{product.cpc}</div>
+                                  <div className={styles.dataCell}>
+                                    {(() => {
+                                      const formatted = formatValueWithSymbol(product.drr)
+                                      return (
+                                        <>
+                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
+                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
+                                        </>
+                                      )
+                                    })()}
+                                  </div>
+                                  <div className={styles.dataCell}>
+                                    {(() => {
+                                      const formatted = formatValueWithSymbol(product.ctr)
+                                      return (
+                                        <>
+                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
+                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
+                                        </>
+                                      )
+                                    })()}
+                                  </div>
+                                  <div className={styles.dataCell}>
+                                    {(() => {
+                                      const formatted = formatValueWithSymbol(product.cpc)
+                                      return (
+                                        <>
+                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
+                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
+                                        </>
+                                      )
+                                    })()}
+                                  </div>
                                 </div>
                               ))}
                             </div>

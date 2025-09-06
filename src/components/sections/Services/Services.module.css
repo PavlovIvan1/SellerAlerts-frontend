@@ -265,7 +265,7 @@
 
 .headerCell {
   padding: var(--spacing-xs);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-secondary);
   text-align: center;
@@ -305,21 +305,21 @@
 }
 
 .productName {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .productAmount {
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   font-weight: 400;
 }
 
 .dataCell {
   padding: var(--spacing-xs);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: var(--text-primary);
   text-align: center;
   border-right: 1px solid #f0f0f0;
@@ -331,6 +331,19 @@
 
 .dataCell:last-child {
   border-right: none;
+}
+
+.dataCellValue {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.dataCellSuffix {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-left: 1px;
 }
 
 
@@ -406,11 +419,11 @@
   .headerCell,
   .productName,
   .dataCell {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
   }
   
   .productAmount {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -473,12 +486,12 @@
   .headerCell,
   .productName,
   .dataCell {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     padding: 4px;
   }
   
   .productAmount {
-    font-size: 0.55rem;
+    font-size: 0.7rem;
   }
   
   .tableBody {
