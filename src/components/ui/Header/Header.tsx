@@ -1,10 +1,14 @@
+import { CircleUserRound } from 'lucide-react'
 import styles from './Header.module.css'
+
 
 interface HeaderProps {
 	currentPersonName?: string
+	onProfileClick: () => void
+	isProfileActive?: boolean
 }
 
-export function Header({ currentPersonName }: HeaderProps) {
+export function Header({ currentPersonName, onProfileClick, isProfileActive }: HeaderProps) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
@@ -18,13 +22,11 @@ export function Header({ currentPersonName }: HeaderProps) {
 				</div>
 				
 				<div className={styles.userSection}>
-					<span className={styles.userName}>Ivan</span>
-					<button className={styles.settingsButton}>
-						<div className={styles.hamburger}>
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
+					<button 
+						className={`${styles.profileButton} ${isProfileActive ? styles.profileButtonActive : ''}`} 
+						onClick={onProfileClick}
+					>
+						<CircleUserRound size={22} strokeWidth={1.5} />
 					</button>
 				</div>
 			</div>

@@ -46,43 +46,35 @@
 	gap: var(--spacing-md);
 }
 
-.userName {
-	color: var(--text-secondary);
-	font-size: 1rem;
-	font-weight: 500;
-}
-
-.settingsButton {
+.profileButton {
 	background: none;
-	border: none;
+	border: 1px solid rgba(140, 146, 156, 0.15);
 	padding: var(--spacing-xs);
-	border-radius: var(--border-radius-sm);
+	border-radius: 50%;
 	transition: all 0.3s ease;
 	cursor: pointer;
-}
-
-.settingsButton:hover {
-	background-color: var(--bg-tertiary);
-}
-
-.hamburger {
+	color: #000000;
 	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	width: 20px;
-	height: 16px;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
 }
 
-.hamburger span {
-	width: 100%;
-	height: 2px;
-	background-color: var(--text-secondary);
-	border-radius: 1px;
-	transition: all 0.3s ease;
+.profileButton:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+	border-color: rgba(140, 146, 156, 0.25);
 }
 
-.settingsButton:hover .hamburger span {
-	background-color: var(--text-primary);
+.profileButtonActive {
+	background-color: #3C91E6;
+	color: #ffffff;
+	border-color: #3C91E6;
+}
+
+.profileButtonActive:hover {
+	background-color: #2980D4;
+	border-color: #2980D4;
 }
 
 /* Адаптивность */
@@ -100,8 +92,9 @@
 		font-size: 1rem;
 	}
 	
-	.userName {
-		font-size: 0.9rem;
+	.profileButton {
+		width: 40px;
+		height: 40px;
 	}
 }
 
@@ -118,12 +111,8 @@
 		font-size: 0.9rem;
 	}
 	
-	.userName {
-		font-size: 0.8rem;
-	}
-	
-	.hamburger {
-		width: 18px;
-		height: 14px;
+	.profileButton {
+		width: 40px;
+		height: 40px;
 	}
 }

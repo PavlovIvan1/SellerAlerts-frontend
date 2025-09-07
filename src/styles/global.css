@@ -95,6 +95,43 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
+/* Profile header section styles */
+.profileHeaderSection {
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  gap: var(--spacing-md);
+  border-top: 1px solid var(--border-light);
+}
+
+.profileBackButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  color: #3C91E6;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.profileBackButton:hover {
+  background-color: var(--bg-tertiary);
+  color: #2980D4;
+}
+
+.profileTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
 /* Предотвращение выделения текста при свайпах */
 .AppProvider {
   user-select: none;
@@ -127,5 +164,32 @@ h1, h2, h3, h4, h5, h6 {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive styles for profile header */
+@media (max-width: 768px) {
+  .profileHeaderSection {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .profileTitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileHeaderSection {
+    padding: var(--spacing-sm);
+  }
+  
+  .profileBackButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .profileBackButton svg {
+    width: 18px;
+    height: 18px;
   }
 }
