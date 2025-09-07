@@ -37,7 +37,6 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
   const [showToken, setShowToken] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [foundTokenInfo, setFoundTokenInfo] = useState<TokenInfo | null>(null)
-  const [showConnectionInfo, setShowConnectionInfo] = useState(false)
   const [validationError, setValidationError] = useState('')
   const [isClosing, setIsClosing] = useState(false)
   const [permissions] = useState<Permission[]>([
@@ -66,11 +65,9 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
       setIsAnalyzing(false)
       if (tokenInfo) {
         setFoundTokenInfo(tokenInfo)
-        setShowConnectionInfo(true)
       } else {
         setValidationError('Токен не найден')
         setFoundTokenInfo(null)
-        setShowConnectionInfo(false)
       }
     }, 1500)
   }
@@ -95,7 +92,6 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
       setToken('')
       setShowToken(false)
       setFoundTokenInfo(null)
-      setShowConnectionInfo(false)
       setValidationError('')
       setIsClosing(false)
       onClose()
@@ -156,12 +152,14 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
                 </button>
               </div>
               <button 
-                className={styles.analyzeButton}
-                onClick={handleTokenSubmit}
+                className={foundTokenInfo ? styles.connectButton : styles.analyzeButton}
+                onClick={foundTokenInfo ? handleAddPerson : handleTokenSubmit}
                 disabled={!token.trim() || isAnalyzing}
               >
                 {isAnalyzing ? (
                   <div className={styles.spinner}></div>
+                ) : foundTokenInfo ? (
+                  'Подключиться'
                 ) : (
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -174,46 +172,6 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
           {validationError && (
             <div className={styles.errorMessage}>
               {validationError}
-            </div>
-          )}
-
-          {isAnalyzing && (
-            <div className={styles.analyzing}>
-              <div className={styles.spinner}></div>
-              <span>Загрузка ...</span>
-            </div>
-          )}
-
-          {showConnectionInfo && foundTokenInfo && (
-            <div className={styles.connectionInfo}>
-              <h3 className={styles.connectionTitle}>Информация о подключении:</h3>
-              <div className={styles.connectionDetails}>
-                <div className={styles.connectionItem}>
-                  <span className={styles.connectionLabel}>Имя:</span>
-                  <span className={styles.connectionValue}>{foundTokenInfo.personName}</span>
-                </div>
-                <div className={styles.connectionItem}>
-                  <span className={styles.connectionLabel}>Телефон:</span>
-                  <span className={styles.connectionValue}>{foundTokenInfo.phone}</span>
-                </div>
-                <div className={styles.connectionItem}>
-                  <span className={styles.connectionLabel}>Статус:</span>
-                  <span className={styles.connectionValue}>{foundTokenInfo.status}</span>
-                </div>
-              </div>
-              <div className={styles.connectionActions}>
-                <button className={styles.connectButton} onClick={handleAddPerson}>
-                  Подключиться
-                </button>
-                <button className={styles.cancelButton} onClick={() => {
-                  setShowConnectionInfo(false)
-                  setFoundTokenInfo(null)
-                  setToken('')
-                  setValidationError('')
-                }}>
-                  Отмена
-                </button>
-              </div>
             </div>
           )}
 

@@ -156,7 +156,10 @@ export function SellerCards({ personId }: Props) {
 										 {products.map((product, index) => (
 											 <div key={product.id} className={styles.tableRow}>
 												 <div className={styles.productCell}>
-													 <div className={styles.productName}>{index + 1}. {product.name}</div>
+													 <div className={styles.productName}>
+												 <span className={styles.numberBadge}>{index + 1}</span>
+												 {product.name}
+											 </div>
 													 <div className={styles.productDataRow}>
 														 <div className={styles.dataColumn}>
 															 {(() => {
@@ -230,7 +233,10 @@ export function SellerCards({ personId }: Props) {
 										 {categories.map((category, index) => (
 											 <div key={category.id} className={styles.tableRow}>
 												 <div className={styles.productCell}>
-													 <div className={styles.productName}>{index + 1}. {category.name}</div>
+													 <div className={styles.productName}>
+												 <span className={styles.numberBadge}>{index + 1}</span>
+												 {category.name}
+											 </div>
 													 <div className={styles.productDataRow}>
 														 <div className={styles.dataColumn}>
 													 {(() => {
