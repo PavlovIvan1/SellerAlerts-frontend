@@ -1,3 +1,4 @@
+import accountData from '../../../data/account.json'
 import styles from './Profile.module.css'
 
 interface ProfileProps {
@@ -13,12 +14,12 @@ export function Profile({ onBack }: ProfileProps) {
 					
 					<div className={styles.infoField}>
 						<span className={styles.fieldLabel}>ФИО</span>
-						<span className={styles.fieldValue}>Васильев Дмитрий Александрович</span>
+						<span className={styles.fieldValue}>{accountData.user.fullName}</span>
 					</div>
 					
 					<div className={styles.infoField}>
 						<span className={styles.fieldLabel}>Дата рождения</span>
-						<span className={styles.fieldValue}>02.01.1993</span>
+						<span className={styles.fieldValue}>{accountData.user.dateOfBirth}</span>
 					</div>
 				</div>
 			</div>

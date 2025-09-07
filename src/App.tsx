@@ -4,7 +4,6 @@ import { SellerCards } from './components/sections/SellerCards/SellerCards'
 import { Services } from './components/sections/Services/Services'
 import { Header } from './components/ui/Header/Header'
 import { Tabs } from './components/ui/Tabs/Tabs'
-import namesData from './data/names.json'
 import './styles/global.css'
 
 interface Person {
@@ -37,8 +36,8 @@ export function App() {
   }
 
   const getCurrentPersonName = () => {
-    if (!personId) return undefined
-    return (namesData as Record<string, string>)[personId]
+    // This function is no longer needed as we use account data
+    return undefined
   }
 
   const handleAddPerson = (person: Person) => {
@@ -184,7 +183,6 @@ export function App() {
       >
         <div className="headerTabsBlock">
           <Header 
-            currentPersonName={getCurrentPersonName()} 
             onProfileClick={handleProfileClick}
             isProfileActive={isProfileOpen}
           />

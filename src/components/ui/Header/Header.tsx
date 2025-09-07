@@ -1,14 +1,13 @@
 import { CircleUserRound } from 'lucide-react'
+import accountData from '../../../data/account.json'
 import styles from './Header.module.css'
 
-
 interface HeaderProps {
-	currentPersonName?: string
 	onProfileClick: () => void
 	isProfileActive?: boolean
 }
 
-export function Header({ currentPersonName, onProfileClick, isProfileActive }: HeaderProps) {
+export function Header({ onProfileClick, isProfileActive }: HeaderProps) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
@@ -16,9 +15,7 @@ export function Header({ currentPersonName, onProfileClick, isProfileActive }: H
 					<div className={styles.appTitle}>
 						seller<span className={styles.colon}>:</span>alert
 					</div>
-					{currentPersonName && (
-						<div className={styles.greeting}>Привет, {currentPersonName}!</div>
-					)}
+					<div className={styles.greeting}>Привет, {accountData.user.firstName}!</div>
 				</div>
 				
 				<div className={styles.userSection}>
