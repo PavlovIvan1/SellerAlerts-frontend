@@ -2,7 +2,7 @@
   background: var(--bg-primary);
   padding: 0;
   position: relative;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-lg) !important;
 }
 
 .servicesSection::before {
@@ -72,18 +72,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 4px;
   scroll-snap-align: center;
   flex-shrink: 0;
 }
 
 .serviceCard {
-  width: 280px;
-  min-height: 160px;
+  width: 288px !important;
+  height: 160px !important;
   background: transparent;
   border: 1px solid #e0e0e0;
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
+  padding: 12px;
   position: relative;
   transition: all 0.3s ease;
   display: flex;
@@ -124,12 +124,13 @@
 }
 
 .cardTitle {
-  font-size: 0.9rem;
+  font-size: 16rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
   text-align: center;
   flex-shrink: 0;
+  color: var(--text-oxford) !important;
 }
 
 .imagePlaceholder {
@@ -211,8 +212,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  min-height: 28px;
-  width: 280px;
+  height: 32px !important;
+  width: 288px !important;
 }
 
 .detailsButton:hover:not(:disabled) {
@@ -236,8 +237,8 @@
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-height: 28px;
-  width: 280px;
+  height: 32px;
+  width: 288px;
 }
 
 .tableButton:hover {
@@ -377,21 +378,23 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .serviceCard {
-    width: 250px;
-    min-height: 140px;
+    width: 260px;
+    height: 140px;
   }
   
   .serviceCard.expanded {
+    height: auto;
     min-height: 280px;
   }
   
   .detailsButton,
   .tableButton {
-    width: 250px;
+    width: 260px;
+    height: 32px;
   }
   
   .cardTitle {
-    font-size: 0.8rem;
+    font-size: 16px;
   }
   
   .placeholderIcon svg {
@@ -424,22 +427,24 @@
 
 @media (max-width: 480px) {
   .serviceCard {
-    width: 220px;
-    min-height: 120px;
-    padding: var(--spacing-xs);
+    width: 240px;
+    height: 120px;
+    padding: 10px;
   }
   
   .serviceCard.expanded {
+    height: auto;
     min-height: 250px;
   }
   
   .detailsButton,
   .tableButton {
-    width: 220px;
+    width: 240px;
+    height: 28px;
   }
   
   .cardTitle {
-    font-size: 0.75rem;
+    font-size: 16px;
   }
   
   .label {
@@ -463,7 +468,7 @@
   .tableButton {
     font-size: 0.75rem;
     padding: 4px var(--spacing-xs);
-    min-height: 24px;
+    height: 28px;
   }
   
   .imagePlaceholder {
