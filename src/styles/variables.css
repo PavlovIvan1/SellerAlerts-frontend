@@ -23,6 +23,7 @@
   --text-secondary: #495057;
   --text-muted: #6c757d;
   --text-accent: #3C91E6;
+  --text-oxford: #1B263B;
   
   /* Границы */
   --border-primary: rgba(0, 0, 0, 0.125);
@@ -44,9 +45,28 @@
   
   /* Отступы */
   --spacing-xs: 8px;
-  --spacing-sm: 15px;
-  --spacing-md: 20px;
+  --spacing-sm: 12px;
+  --spacing-md: 24px;
   --spacing-lg: 25px;
   --spacing-xl: 40px;
   --spacing-xxl: 60px;
+  
+  /* Размеры шрифтов */
+  --font-size-12: 12px;
+  --font-size-16: 16px;
+  --font-size-20: 20px;
+  
+  /* Толщина шрифтов */
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  
+  /* Размеры кнопок и элементов */
+  --button-size-48: 48px;
+  --icon-size-24: 24px;
+  
+  /* Отступы для кнопки плюса */
+  --add-button-spacing-top: 34px;
+  --add-button-spacing-bottom: 34px;
+  --add-button-spacing-left: 24px;
+  --tabs-gap: 8px;
 }

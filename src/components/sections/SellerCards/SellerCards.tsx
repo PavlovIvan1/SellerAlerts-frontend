@@ -239,16 +239,16 @@ export function SellerCards({ personId }: Props) {
 											 </div>
 													 <div className={styles.productDataRow}>
 														 <div className={styles.dataColumn}>
-													 {(() => {
-														 const formatted = formatOrdersAmount(category.ordersAmount)
-														 return (
-															 <>
-																 <span className={styles.mainValue}>{formatted.mainValue}</span>
-																 <span className={styles.suffixValue}>{formatted.suffix}</span>
-															 </>
-														 )
-													 })()}
-												 </div>
+															 {(() => {
+																 const formatted = formatOrdersAmount(category.ordersAmount)
+																 return (
+																	 <>
+																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
+																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
+																	 </>
+																 )
+															 })()}
+														 </div>
 														 <div className={styles.dataColumn}>
 															 {(() => {
 																 const formatted = formatValueWithSymbol(category.drr)

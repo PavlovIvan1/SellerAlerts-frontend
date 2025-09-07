@@ -52,10 +52,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 32px;
 }
 
 .earnings p {
-	font-size: 0.75rem;
+	font-size: 1rem;
 	font-weight: 500;
 	margin: 0;
 	padding: 0;
@@ -65,6 +66,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	font-weight: 350;
 }
 
 .earnings.positive p {
@@ -101,7 +104,7 @@
 	font-size: 1.3rem !important;
 	font-weight: 700;
 	margin-top: 12px;
-	color: var(--text-primary);
+	color: #1B263B;
 	line-height: 1.2;
 	width: 100%;
 	text-align: center;
@@ -112,6 +115,7 @@
 .valueNumber {
 	font-size: 1.3rem;
 	font-weight: 700;
+	color: #1B263B;
 }
 
 .valueSuffix {
@@ -162,7 +166,7 @@
 	.earnings p,
 	.earnings.positive p,
 	.earnings.negative p {
-		font-size: 0.8rem;
+		font-size: 1rem;
 		padding: 2px 0;
 		height: 100%;
 		display: flex;
@@ -193,7 +197,7 @@
 	
 	.title p,
 	.earnings p {
-		font-size: 0.75rem;
+		font-size: 1rem;
 	}
 }
 
@@ -219,7 +223,7 @@
 	
 	.title p,
 	.earnings p {
-		font-size: 0.7rem;
+		font-size: 1rem;
 	}
 }
 
@@ -245,6 +249,6 @@
 
 	.title p,
 	.earnings p {
-		font-size: 0.65rem;
+		font-size: 1rem;
 	}
 }

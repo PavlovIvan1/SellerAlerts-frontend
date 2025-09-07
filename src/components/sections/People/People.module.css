@@ -74,6 +74,7 @@
 	font-weight: 600;
 	margin-bottom: var(--spacing-sm);
 	opacity: 0.9;
+	color: #1B263B;
 }
 
 .emptyDescription {

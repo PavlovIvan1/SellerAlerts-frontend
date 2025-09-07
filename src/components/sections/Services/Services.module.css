@@ -1,6 +1,6 @@
 .servicesSection {
   background: var(--bg-primary);
-  padding: var(--spacing-md) 0;
+  padding: 0;
   position: relative;
   border-radius: var(--border-radius-lg);
 }
@@ -21,13 +21,13 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  padding: 0 2px !important;
+  padding: 0;
 }
 
 .servicesBlock {
   background: white;
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-sm) !important;
+  padding: var(--spacing-md);
   box-shadow: none;
 }
 
@@ -40,9 +40,9 @@
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-medium);
+  color: #1B263B;
   margin: 0;
 }
 
@@ -57,8 +57,8 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: var(--spacing-md);
-  /* padding: 0 var(--spacing-sm); */
+  gap: var(--spacing-xs);
+  padding: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
   touch-action: pan-x;
@@ -187,7 +187,7 @@
 
 .value {
   font-size: 0.8rem;
-  color: var(--text-primary);
+  color: #1B263B;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -307,7 +307,7 @@
 .productName {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #1B263B;
   line-height: 1.2;
 }
 
@@ -320,7 +320,7 @@
 .dataCell {
   padding: var(--spacing-xs);
   font-size: 0.9rem;
-  color: var(--text-primary);
+  color: #1B263B;
   text-align: center;
   border-right: 1px solid #f0f0f0;
   display: flex;
@@ -336,7 +336,7 @@
 .dataCellValue {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #1B263B;
 }
 
 .dataCellSuffix {
@@ -361,7 +361,7 @@
 .emptyTitle {
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1B263B;
   margin-bottom: var(--spacing-md);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -376,11 +376,6 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .servicesSection {
-    padding: var(--spacing-sm) 0;
-    margin: var(--spacing-xs) 0;
-  }
-  
   .serviceCard {
     width: 250px;
     min-height: 140px;
@@ -428,10 +423,6 @@
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 var(--spacing-xs);
-  }
-  
   .serviceCard {
     width: 220px;
     min-height: 120px;

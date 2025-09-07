@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import productsByPerson from '../../../data/productsByPerson.json';
 import styles from './Services.module.css';
 
 // Функция для форматирования значений с символами (%, ₽)
@@ -18,20 +17,10 @@ function formatValueWithSymbol(value: string): { mainValue: string; suffix: stri
 interface ServiceCard {
   id: string
   title: string
-  type: 'service' | 'autotables' | 'autogems' | 'products'
+  type: 'service' | 'autotables' | 'autogems'
   isLocked?: boolean
   autoRenewal?: boolean
   paidUntil?: string
-}
-
-interface Product {
-  id: string
-  name: string
-  orders: number
-  ordersAmount: string
-  drr: string
-  ctr: string
-  cpc: string
 }
 
 interface Props {
@@ -60,12 +49,6 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
       isLocked: false,
       autoRenewal: true,
       paidUntil: '15.03.2025'
-    },
-    {
-      id: 'products',
-      title: 'Артикул',
-      type: 'products',
-      isLocked: false
     }
   ],
   petrova: [
@@ -88,12 +71,6 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
       isLocked: false,
       autoRenewal: false,
       paidUntil: '28.02.2025'
-    },
-    {
-      id: 'products',
-      title: 'Артикул',
-      type: 'products',
-      isLocked: false
     }
   ],
   sidorov: [
@@ -116,12 +93,6 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
       isLocked: true,
       autoRenewal: false,
       paidUntil: 'Не оплачено'
-    },
-    {
-      id: 'products',
-      title: 'Артикул',
-      type: 'products',
-      isLocked: true
     }
   ],
   company1: [
@@ -144,12 +115,6 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
       isLocked: false,
       autoRenewal: true,
       paidUntil: '10.07.2025'
-    },
-    {
-      id: 'products',
-      title: 'Артикул',
-      type: 'products',
-      isLocked: false
     }
   ]
 }
@@ -159,7 +124,6 @@ export function Services({ personId }: Props) {
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
 
   const serviceCards = servicesByPerson[personId] || []
-  const products = (productsByPerson as Record<string, Product[]>)[personId] || []
 
   // Предотвращаем глобальные свайпы при взаимодействии со слайдером
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -282,75 +246,6 @@ export function Services({ personId }: Props) {
                       </div>
                     )}
                     
-                    {card.type === 'products' && (
-                      <>
-                        <div className={styles.imagePlaceholder}>
-                          <div className={styles.placeholderIcon}>
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                              <path d="M7 7h10l-1 8H8l-1-8zM7 7L6 3H2m5 4l1 8h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              <circle cx="9" cy="20" r="1" stroke="currentColor" strokeWidth="2"/>
-                              <circle cx="20" cy="20" r="1" stroke="currentColor" strokeWidth="2"/>
-                            </svg>
-                          </div>
-                        </div>
-                        
-                        {expandedCard === card.id && (
-                          <div className={styles.productsTable}>
-                            <div className={styles.tableHeader}>
-                              <div className={styles.headerCell}>Товар</div>
-                              <div className={styles.headerCell}>Заказы</div>
-                              <div className={styles.headerCell}>ДРР</div>
-                              <div className={styles.headerCell}>CTR</div>
-                              <div className={styles.headerCell}>CPC</div>
-                            </div>
-                            <div className={styles.tableBody}>
-                              {products.map((product) => (
-                                <div key={product.id} className={styles.tableRow}>
-                                  <div className={styles.productCell}>
-                                    <div className={styles.productName}>{product.name}</div>
-                                    <div className={styles.productAmount}>{product.ordersAmount}</div>
-                                  </div>
-                                  <div className={styles.dataCell}>{product.orders}</div>
-                                  <div className={styles.dataCell}>
-                                    {(() => {
-                                      const formatted = formatValueWithSymbol(product.drr)
-                                      return (
-                                        <>
-                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
-                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
-                                        </>
-                                      )
-                                    })()}
-                                  </div>
-                                  <div className={styles.dataCell}>
-                                    {(() => {
-                                      const formatted = formatValueWithSymbol(product.ctr)
-                                      return (
-                                        <>
-                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
-                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
-                                        </>
-                                      )
-                                    })()}
-                                  </div>
-                                  <div className={styles.dataCell}>
-                                    {(() => {
-                                      const formatted = formatValueWithSymbol(product.cpc)
-                                      return (
-                                        <>
-                                          <span className={styles.dataCellValue}>{formatted.mainValue}</span>
-                                          <span className={styles.dataCellSuffix}>{formatted.suffix}</span>
-                                        </>
-                                      )
-                                    })()}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    )}
                   </div>
                 </div>
                 
@@ -373,15 +268,6 @@ export function Services({ personId }: Props) {
                   </button>
                 )}
                 
-                {card.type === 'products' && (
-                  <button 
-                    className={styles.detailsButton} 
-                    disabled={card.isLocked}
-                    onClick={() => setExpandedCard(expandedCard === card.id ? null : card.id)}
-                  >
-                    {expandedCard === card.id ? 'Свернуть' : 'Показать товары'}
-                  </button>
-                )}
               </div>
             ))}
           </div>

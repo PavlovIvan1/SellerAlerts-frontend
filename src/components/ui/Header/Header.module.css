@@ -9,11 +9,12 @@
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 0 var(--spacing-md);
+	padding: 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 70px;
+	height: auto;
+	margin-bottom: var(--spacing-md);
 }
 
 .logo {
@@ -24,9 +25,9 @@
 }
 
 .appTitle {
-	font-size: 1.8rem;
+	font-size: 22px !important;
 	font-weight: 700;
-	color: var(--text-primary);
+	color: #1B263B;
 	letter-spacing: 0.5px;
 }
 
@@ -35,8 +36,8 @@
 }
 
 .greeting {
-	font-size: 1.1rem;
-	font-weight: 400;
+	font-size: var(--font-size-16);
+	font-weight: var(--font-weight-light);
 	color: var(--text-muted);
 }
 
@@ -49,7 +50,7 @@
 .profileButton {
 	background: none;
 	border: 1px solid rgba(140, 146, 156, 0.15);
-	padding: var(--spacing-xs);
+	padding: 0;
 	border-radius: 50%;
 	transition: all 0.3s ease;
 	cursor: pointer;
@@ -57,8 +58,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
+	width: var(--button-size-48);
+	height: var(--button-size-48);
 }
 
 .profileButton:hover {
@@ -79,10 +80,6 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
-	.container {
-		padding: 0 var(--spacing-sm);
-		height: 60px;
-	}
 	
 	.appTitle {
 		font-size: 1.5rem;
@@ -93,8 +90,8 @@
 	}
 	
 	.profileButton {
-		width: 40px;
-		height: 40px;
+		width: 48px;
+		height: 48px;
 	}
 }
 
@@ -112,7 +109,7 @@
 	}
 	
 	.profileButton {
-		width: 40px;
-		height: 40px;
+		width: 48px;
+		height: 48px;
 	}
 }

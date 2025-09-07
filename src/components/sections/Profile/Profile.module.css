@@ -1,6 +1,5 @@
 .profilePage {
 	background-color: #F3F4F5;
-	min-height: 100vh;
 	padding: 0;
 }
 
@@ -20,7 +19,7 @@
 .sectionTitle {
 	font-size: 1.2rem;
 	font-weight: 600;
-	color: var(--text-primary);
+	color: #1B263B;
 	margin: 0 0 var(--spacing-lg) 0;
 }
 
@@ -46,7 +45,7 @@
 .fieldValue {
 	font-size: 1rem;
 	font-weight: 500;
-	color: var(--text-primary);
+	color: #1B263B;
 }
 
 /* Адаптивность */

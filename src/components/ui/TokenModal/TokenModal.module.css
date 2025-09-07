@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -38,13 +38,12 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--border-primary);
 }
 
 .title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1B263B;
   margin: 0;
 }
 
@@ -117,7 +116,7 @@
 
 .tokenName {
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1B263B;
   font-size: 14px;
   margin-bottom: 2px;
 }
@@ -152,7 +151,7 @@
 .connectionTitle {
   font-size: 16px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1B263B;
   margin-bottom: var(--spacing-md);
 }
 
@@ -180,7 +179,7 @@
 
 .connectionValue {
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1B263B;
   font-size: 14px;
   text-align: right;
 }
@@ -289,10 +288,11 @@
   border: none;
   border-radius: var(--border-radius-lg) var(--border-radius-lg) var(--border-radius-xs) var(--border-radius-xs);
   padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--text-primary);
+  color: #1B263B;
   font-size: 14px;
   transition: all 0.2s ease;
   width: 100%;
+  height: 68px;
 }
 
 .input:focus {
@@ -344,7 +344,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: var(--text-accent);
   cursor: pointer;
   padding: var(--spacing-xs);
   display: flex;
@@ -354,7 +354,7 @@
 }
 
 .toggleButton:hover {
-  color: var(--text-secondary);
+  color: var(--text-accent);
 }
 
 .analyzing {
@@ -378,7 +378,7 @@
 }
 
 .permissionsSection {
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
 }
 
 .permissionsTitle {
@@ -398,7 +398,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm) 0;
+  /* padding: var(--spacing-sm) 0; */
 }
 
 .permissionDot {
@@ -422,8 +422,9 @@
 }
 
 .permissionName {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-oxford);
 }
 
 .hasAccessText {
@@ -496,7 +497,7 @@
   }
   
   .title {
-    font-size: 16px;
+    font-size: 20px;
   }
   
   .analyzeButton {
@@ -520,10 +521,10 @@
   }
   
   .permissionItem {
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 1px 0;
   }
   
   .permissionName {
-    font-size: 13px;
+    font-size: 16px;
   }
 }

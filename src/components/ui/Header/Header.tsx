@@ -23,7 +23,7 @@ export function Header({ onProfileClick, isProfileActive }: HeaderProps) {
 						className={`${styles.profileButton} ${isProfileActive ? styles.profileButtonActive : ''}`} 
 						onClick={onProfileClick}
 					>
-						<CircleUserRound size={22} strokeWidth={1.5} />
+						<CircleUserRound size={24} strokeWidth={1.5} />
 					</button>
 				</div>
 			</div>
