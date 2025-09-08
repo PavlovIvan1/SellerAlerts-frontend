@@ -125,12 +125,12 @@
 }
 
 .earningsNumber {
-	font-size: inherit;
+	font-size: 1rem;
 	font-weight: inherit;
 }
 
 .earningsSuffix {
-	font-size: 0.8em;
+	font-size: 0.4em;
 	font-weight: 400;
 	opacity: 0.9;
 }
@@ -214,11 +214,11 @@
 	}
 	
 	.valueNumber {
-		font-size: 1rem;
+		font-size: 1rem !important;
 	}
 	
 	.valueSuffix {
-		font-size: 0.75rem;
+		font-size: 0.75rem !important;
 	}
 	
 	.title p,

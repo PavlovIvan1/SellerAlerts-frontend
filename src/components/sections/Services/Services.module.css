@@ -124,7 +124,7 @@
 }
 
 .cardTitle {
-  font-size: 16rem;
+  /* font-size: 16rem; */
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -237,8 +237,8 @@
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  height: 32px;
-  width: 288px;
+  height: 32px !important;
+  width: 288px !important;
 }
 
 .tableButton:hover {
