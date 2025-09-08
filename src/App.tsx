@@ -35,11 +35,6 @@ export function App() {
     setIsProfileOpen(false)
   }
 
-  const getCurrentPersonName = () => {
-    // This function is no longer needed as we use account data
-    return undefined
-  }
-
   const handleAddPerson = (person: Person) => {
     // Check if person already exists
     if (!people.find(p => p.id === person.id)) {
@@ -206,7 +201,7 @@ export function App() {
           )}
         </div>
         {isProfileOpen ? (
-          <Profile onBack={handleProfileBack} />
+          <Profile />
         ) : (
           people.length > 0 && (
             <>

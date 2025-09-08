@@ -1,11 +1,7 @@
 import accountData from '../../../data/account.json'
 import styles from './Profile.module.css'
 
-interface ProfileProps {
-	onBack: () => void
-}
-
-export function Profile({ onBack }: ProfileProps) {
+export function Profile() {
 	return (
 		<div className={styles.profilePage}>
 			<div className={styles.profileContent}>

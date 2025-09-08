@@ -1,18 +1,5 @@
-import { useRef, useState } from 'react';
-import styles from './Services.module.css';
-
-// Функция для форматирования значений с символами (%, ₽)
-function formatValueWithSymbol(value: string): { mainValue: string; suffix: string } {
-	if (value.includes('%')) {
-		const numericPart = value.replace('%', '')
-		return { mainValue: numericPart, suffix: '%' }
-	} else if (value.includes('₽')) {
-		const numericPart = value.replace(/[\s₽]/g, '')
-		return { mainValue: numericPart, suffix: ' ₽' }
-	} else {
-		return { mainValue: value, suffix: '' }
-	}
-}
+import { useRef, useState } from 'react'
+import styles from './Services.module.css'
 
 interface ServiceCard {
   id: string
@@ -121,7 +108,7 @@ const servicesByPerson: Record<string, ServiceCard[]> = {
 
 export function Services({ personId }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null)
-  const [expandedCard, setExpandedCard] = useState<string | null>(null)
+  const [expandedCard] = useState<string | null>(null)
 
   const serviceCards = servicesByPerson[personId] || []
 
