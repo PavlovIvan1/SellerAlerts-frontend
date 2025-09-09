@@ -375,6 +375,12 @@
   opacity: 0.8;
 }
 
+@media (max-width: 400px) {
+  .title {
+    font-size: 18px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .serviceCard {

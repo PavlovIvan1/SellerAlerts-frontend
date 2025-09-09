@@ -49,6 +49,12 @@
 }
 
 /* Адаптивность */
+@media (max-width: 400px) {
+	.sectionTitle {
+		font-size: 18px;
+	}
+}
+
 @media (max-width: 768px) {
 	.profileContent {
 		/* padding: var(--spacing-sm); */

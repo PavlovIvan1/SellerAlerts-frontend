@@ -67,6 +67,86 @@
 	color: var(--text-secondary);
 }
 
+/* Dropdown styles */
+.dropdown {
+	position: relative;
+}
+
+.dropdownButton {
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: var(--border-radius-sm);
+	padding: var(--spacing-xs) var(--spacing-sm);
+	cursor: pointer;
+	font-size: var(--font-size-16);
+	font-weight: 500;
+	color: var(--text-accent);
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	transition: all 0.2s ease;
+	min-width: 100px;
+	justify-content: space-between;
+	text-transform: capitalize;
+}
+
+.dropdownButton:hover {
+	border-color: var(--text-accent);
+	background: #f8fafc;
+}
+
+.dropdownIcon {
+	transition: transform 0.2s ease;
+	color: var(--text-accent);
+	flex-shrink: 0;
+}
+
+.dropdownIcon.open {
+	transform: rotate(180deg);
+}
+
+.dropdownMenu {
+	position: absolute;
+	top: calc(100% + 4px);
+	right: 0;
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: var(--border-radius-sm);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+	min-width: 120px;
+	overflow: hidden;
+}
+
+.dropdownItem {
+	width: 100%;
+	background: none;
+	border: none;
+	padding: var(--spacing-xs) var(--spacing-sm);
+	cursor: pointer;
+	font-size: var(--font-size-16);
+	font-weight: 500;
+	color: var(--text-secondary);
+	transition: all 0.2s ease;
+	text-align: left;
+	border-bottom: 1px solid #f0f0f0;
+	text-transform: capitalize;
+}
+
+.dropdownItem:last-child {
+	border-bottom: none;
+}
+
+.dropdownItem:hover {
+	background: #f8fafc;
+	color: var(--text-primary);
+}
+
+.dropdownItem.active {
+	color: var(--text-accent);
+	background: #f0f8ff;
+}
+
 .cardsGrid {
 	display: flex;
 	flex-direction: row;
@@ -264,16 +344,40 @@
 		flex-wrap: wrap;
 		max-width: 100%;
 		justify-content: flex-start;
+		gap: var(--spacing-xs);
+	}
+	
+	/* Ограничиваем максимум 3 карточки в ряд */
+	.cardsGrid > * {
+		max-width: calc(33.333% - 6px);
+		flex: 0 0 calc(33.333% - 6px);
 	}
 	
 	.header {
-		flex-direction: column;
-		align-items: flex-start;
+		/* Оставляем в одну строку с заголовком */
+		flex-direction: row;
+		align-items: center;
 		gap: var(--spacing-md);
+		justify-content: space-between;
 	}
 	
 	.categories {
-		gap: var(--spacing-md);
+		/* Меньше расстояние между кнопками */
+		gap: var(--spacing-xs);
+		flex-wrap: nowrap;
+	}
+	
+	/* Меньший шрифт для кнопок категорий чтобы поместились в строку */
+	.categoryButton {
+		font-size: 14px;
+		padding: 4px 8px;
+		white-space: nowrap;
+	}
+}
+
+@media (max-width: 400px) {
+	.title {
+		font-size: 18px !important;
 	}
 }
 
@@ -303,9 +407,9 @@
 		font-size: 1.3rem;
 	}
 	
-	.categoryButton {
+	/* .categoryButton {
 		font-size: 0.9rem;
-	}
+	} */
 	
 	.headerCell {
 		font-size: 0.9rem;
@@ -329,9 +433,23 @@
 	}
 }
 
+@media (max-width: 400px) {
+	.categoryButton {
+		font-size: 12px;
+	}
+}
+
 @media (max-width: 370px) {
 	.cardsGrid {
-		grid-template-columns: 1fr;
+		/* На очень маленьких экранах используем flex для лучшего контроля */
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		gap: var(--spacing-xs);
+	}
+	
+	/* Убираем grid-template-columns для более гибкой раскладки */
+	.cardsGrid > * {
+		flex: 0 0 auto;
 	}
 	
 	.headerCell {

@@ -15,8 +15,27 @@ interface Person {
 }
 
 export function App() {
-  const [people, setPeople] = useState<Person[]>([])
-  const [personId, setPersonId] = useState('')
+  // Load saved people from localStorage on initialization
+  const [people, setPeople] = useState<Person[]>(() => {
+    try {
+      const savedPeople = localStorage.getItem('seller-alert-people')
+      return savedPeople ? JSON.parse(savedPeople) : []
+    } catch (error) {
+      console.error('Error loading saved people:', error)
+      return []
+    }
+  })
+  
+  // Load saved selected person from localStorage on initialization
+  const [personId, setPersonId] = useState(() => {
+    try {
+      const savedPersonId = localStorage.getItem('seller-alert-selected-person')
+      return savedPersonId || ''
+    } catch (error) {
+      console.error('Error loading saved selected person:', error)
+      return ''
+    }
+  })
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [displayPersonId, setDisplayPersonId] = useState('')
@@ -26,6 +45,44 @@ export function App() {
   const [startY, setStartY] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+
+  // Save people to localStorage whenever the people array changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('seller-alert-people', JSON.stringify(people))
+    } catch (error) {
+      console.error('Error saving people to localStorage:', error)
+    }
+  }, [people])
+
+  // Save selected person to localStorage whenever personId changes
+  useEffect(() => {
+    try {
+      if (personId) {
+        localStorage.setItem('seller-alert-selected-person', personId)
+      } else {
+        localStorage.removeItem('seller-alert-selected-person')
+      }
+    } catch (error) {
+      console.error('Error saving selected person to localStorage:', error)
+    }
+  }, [personId])
+
+  // Initialize displayPersonId when component mounts or when people/personId changes
+  useEffect(() => {
+    if (people.length > 0) {
+      // If we have a saved personId and it exists in people, use it
+      if (personId && people.find(p => p.id === personId)) {
+        setDisplayPersonId(personId)
+      } 
+      // Otherwise, select the first person
+      else if (!personId) {
+        const firstPersonId = people[0].id
+        setPersonId(firstPersonId)
+        setDisplayPersonId(firstPersonId)
+      }
+    }
+  }, [people, personId])
 
   const handleProfileClick = () => {
     setIsProfileOpen(true)
@@ -43,6 +100,37 @@ export function App() {
       if (!personId) {
         setPersonId(person.id)
         setDisplayPersonId(person.id)
+      }
+    }
+  }
+
+  // Function to clear all saved data (useful for debugging or reset)
+  const clearSavedData = () => {
+    try {
+      localStorage.removeItem('seller-alert-people')
+      localStorage.removeItem('seller-alert-selected-person')
+      setPeople([])
+      setPersonId('')
+      setDisplayPersonId('')
+    } catch (error) {
+      console.error('Error clearing saved data:', error)
+    }
+  }
+
+  // Function to remove a specific person
+  const handleRemovePerson = (personIdToRemove: string) => {
+    const updatedPeople = people.filter(p => p.id !== personIdToRemove)
+    setPeople(updatedPeople)
+    
+    // If we're removing the currently selected person, select another one
+    if (personId === personIdToRemove) {
+      if (updatedPeople.length > 0) {
+        const newPersonId = updatedPeople[0].id
+        setPersonId(newPersonId)
+        setDisplayPersonId(newPersonId)
+      } else {
+        setPersonId('')
+        setDisplayPersonId('')
       }
     }
   }

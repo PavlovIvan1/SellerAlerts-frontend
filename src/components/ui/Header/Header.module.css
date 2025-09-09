@@ -79,6 +79,12 @@
 }
 
 /* Адаптивность */
+@media (max-width: 400px) {
+	.appTitle {
+		font-size: 18px !important;
+	}
+}
+
 @media (max-width: 768px) {
 	
 	.appTitle {

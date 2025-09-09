@@ -69,14 +69,34 @@ type StatCategory = 'полная' | 'артикул' | 'категория'
 export function SellerCards({ personId }: Props) {
 	 const [activeCategory, setActiveCategory] = useState<StatCategory>('полная')
 	 const [showAll, setShowAll] = useState(false)
+	 const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	 const allCards = useMemo(() => (cardsByPerson as Record<string, any[]>)[personId] ?? [], [personId])
 	 const products = useMemo(() => (productsByPerson as Record<string, Product[]>)[personId] ?? [], [personId])
 	 const categories = useMemo(() => (categoriesByPerson as Record<string, Category[]>)[personId] ?? [], [personId])
+
+	 // Определяем количество карточек для показа в зависимости от размера экрана
+	 const [initialCardsCount, setInitialCardsCount] = useState(4)
+	 const [useDropdown, setUseDropdown] = useState(false)
+
+	 useEffect(() => {
+		 const updateCardsCount = () => {
+			 // Показываем 3 карточки для экранов <= 400px, иначе 4
+			 setInitialCardsCount(window.innerWidth <= 400 ? 3 : 4)
+			 // Используем dropdown для экранов <= 400px
+			 const shouldUseDropdown = window.innerWidth <= 400
+			 setUseDropdown(shouldUseDropdown)
+		 }
+
+		 updateCardsCount()
+		 window.addEventListener('resize', updateCardsCount)
+		 return () => window.removeEventListener('resize', updateCardsCount)
+	 }, [])
 
 	 // Сбрасываем активную категорию и показ всех карт при смене человека
 	 useEffect(() => {
 		 setActiveCategory('полная')
 		 setShowAll(false)
+		 setIsDropdownOpen(false)
 	 }, [personId])
 
 	 if (!personId || allCards.length === 0) {
@@ -95,7 +115,7 @@ export function SellerCards({ personId }: Props) {
 	 }
 
 	 // Показываем карточки для категории "полная"
-	 const visibleCards = showAll ? allCards : allCards.slice(0, 4)
+	 const visibleCards = showAll ? allCards : allCards.slice(0, initialCardsCount)
 
 	 return (
 		 <section className={styles.sellerSection}>
@@ -103,17 +123,53 @@ export function SellerCards({ personId }: Props) {
 				 <div className={styles.statisticsBlock}>
 					 <div className={styles.header}>
 						 <h2 className={styles.title}>Статистика</h2>
-						 <div className={styles.categories}>
-							 {(['полная', 'артикул', 'категория'] as const).map((category) => (
-								 <button
-									 key={category}
-									 className={`${styles.categoryButton} ${activeCategory === category ? styles.active : ''}`}
-									 onClick={() => setActiveCategory(category)}
+						 {useDropdown ? (
+							 <div className={styles.dropdown}>
+								 <button 
+									 className={styles.dropdownButton}
+									 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
 								 >
-									 {category}
+									 {activeCategory}
+									 <svg 
+										 className={`${styles.dropdownIcon} ${isDropdownOpen ? styles.open : ''}`}
+										 width="16" 
+										 height="16" 
+										 viewBox="0 0 24 24" 
+										 fill="none"
+									 >
+										 <path d="M19 9l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+									 </svg>
 								 </button>
-							 ))}
-						 </div>
+								 {isDropdownOpen && (
+									 <div className={styles.dropdownMenu}>
+										 {(['полная', 'артикул', 'категория'] as const).map((category) => (
+											 <button
+												 key={category}
+												 className={`${styles.dropdownItem} ${activeCategory === category ? styles.active : ''}`}
+												 onClick={() => {
+													 setActiveCategory(category)
+													 setIsDropdownOpen(false)
+												 }}
+											 >
+												 {category}
+											 </button>
+										 ))}
+									 </div>
+								 )}
+							 </div>
+						 ) : (
+							 <div className={styles.categories}>
+								 {(['полная', 'артикул', 'категория'] as const).map((category) => (
+									 <button
+										 key={category}
+										 className={`${styles.categoryButton} ${activeCategory === category ? styles.active : ''}`}
+										 onClick={() => setActiveCategory(category)}
+									 >
+										 {category}
+									 </button>
+								 ))}
+							 </div>
+						 )}
 					 </div>
 					 
 					 {activeCategory === 'полная' && (
@@ -129,7 +185,7 @@ export function SellerCards({ personId }: Props) {
 									 />
 								 ))}
 							 </div>
-							 {allCards.length > 4 && (
+							 {allCards.length > initialCardsCount && (
 								 <div className={styles.showMoreContainer}>
 									 <button
 										 className={styles.showMoreButton}
