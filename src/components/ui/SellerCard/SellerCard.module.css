@@ -229,7 +229,7 @@
 
 @media (max-width: 370px) {
 	.SellerCard {
-		width: 100px;
+		width: 90px;
 		height: 88px;
 		padding: var(--spacing-xs);
 		flex-shrink: 0;
