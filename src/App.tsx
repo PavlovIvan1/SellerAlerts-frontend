@@ -104,36 +104,7 @@ export function App() {
     }
   }
 
-  // Function to clear all saved data (useful for debugging or reset)
-  const clearSavedData = () => {
-    try {
-      localStorage.removeItem('seller-alert-people')
-      localStorage.removeItem('seller-alert-selected-person')
-      setPeople([])
-      setPersonId('')
-      setDisplayPersonId('')
-    } catch (error) {
-      console.error('Error clearing saved data:', error)
-    }
-  }
 
-  // Function to remove a specific person
-  const handleRemovePerson = (personIdToRemove: string) => {
-    const updatedPeople = people.filter(p => p.id !== personIdToRemove)
-    setPeople(updatedPeople)
-    
-    // If we're removing the currently selected person, select another one
-    if (personId === personIdToRemove) {
-      if (updatedPeople.length > 0) {
-        const newPersonId = updatedPeople[0].id
-        setPersonId(newPersonId)
-        setDisplayPersonId(newPersonId)
-      } else {
-        setPersonId('')
-        setDisplayPersonId('')
-      }
-    }
-  }
 
   const getCurrentPersonIndex = () => {
     return people.findIndex(person => person.id === personId)
