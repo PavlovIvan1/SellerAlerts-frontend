@@ -58,7 +58,7 @@ export function TokenModal({ isOpen, onClose, onAddPerson }: TokenModalProps) {
     setIsAnalyzing(true)
     setValidationError('')
     
-    // Search for token in the database
+    
     const tokenInfo = tokensData.find(t => t.token === token.trim()) as TokenInfo | undefined
     
     setTimeout(() => {

@@ -5,9 +5,9 @@ import productsByPerson from '../../../data/productsByPerson.json'
 import { SellerCard } from '../../ui/SellerCard/SellerCard'
 import styles from './SellerCards.module.css'
 
-// Функция для форматирования суммы с сокращением "к" для тысяч
+
 function formatOrdersAmount(amount: string): { mainValue: string; suffix: string } {
-	// Удаляем пробелы, запятые и валютный символ для обработки
+
 	const cleanAmount = amount.replace(/[\s,₽]/g, '')
 	const numericValue = parseInt(cleanAmount)
 	
@@ -18,7 +18,7 @@ function formatOrdersAmount(amount: string): { mainValue: string; suffix: string
 		if (remainder === 0) {
 			return { mainValue: thousands.toString(), suffix: 'к' }
 		} else {
-			// Если есть остаток, показываем с десятичной частью
+
 			const formattedValue = (numericValue / 1000).toFixed(1)
 			return { mainValue: formattedValue, suffix: 'к' }
 		}
@@ -27,7 +27,7 @@ function formatOrdersAmount(amount: string): { mainValue: string; suffix: string
 	}
 }
 
-// Функция для форматирования значений с символами (%, ₽)
+
 function formatValueWithSymbol(value: string): { mainValue: string; suffix: string } {
 	if (value.includes('%')) {
 		const numericPart = value.replace('%', '')
@@ -74,15 +74,15 @@ export function SellerCards({ personId }: Props) {
 	 const products = useMemo(() => (productsByPerson as Record<string, Product[]>)[personId] ?? [], [personId])
 	 const categories = useMemo(() => (categoriesByPerson as Record<string, Category[]>)[personId] ?? [], [personId])
 
-	 // Определяем количество карточек для показа в зависимости от размера экрана
+
 	 const [initialCardsCount, setInitialCardsCount] = useState(4)
 	 const [useDropdown, setUseDropdown] = useState(false)
 
 	 useEffect(() => {
 		 const updateCardsCount = () => {
-			 // Показываем 3 карточки для экранов <= 400px, иначе 4
+
 			 setInitialCardsCount(window.innerWidth <= 400 ? 3 : 4)
-			 // Используем dropdown для экранов <= 400px
+
 			 const shouldUseDropdown = window.innerWidth <= 400
 			 setUseDropdown(shouldUseDropdown)
 		 }
@@ -92,14 +92,14 @@ export function SellerCards({ personId }: Props) {
 		 return () => window.removeEventListener('resize', updateCardsCount)
 	 }, [])
 
-	 // Сбрасываем активную категорию и показ всех карт при смене человека
+
 	 useEffect(() => {
 		 setActiveCategory('полная')
 		 setShowAll(false)
 		 setIsDropdownOpen(false)
 	 }, [personId])
 
-	 if (!personId || allCards.length === 0) {
+	 if (!personId) {
 		 return (
 			 <section className={styles.sellerSection}>
 				 <div className={styles.container}>
@@ -114,7 +114,27 @@ export function SellerCards({ personId }: Props) {
 		 )
 	 }
 
-	 // Показываем карточки для категории "полная"
+	 if (allCards.length === 0) {
+		 return (
+			 <section className={styles.sellerSection}>
+				 <div className={styles.container}>
+					 <div className={styles.statisticsBlock}>
+						 <div className={styles.header}>
+							 <h2 className={styles.title}>Статистика</h2>
+						 </div>
+						 <div className={styles.emptyState}>
+							 <h2 className={styles.emptyTitle}>Пока ничего нет</h2>
+							 <p className={styles.emptyDescription}>
+								 Карточки статистики появятся здесь по мере накопления данных
+							 </p>
+						 </div>
+					 </div>
+				 </div>
+			 </section>
+		 )
+	 }
+
+
 	 const visibleCards = showAll ? allCards : allCards.slice(0, initialCardsCount)
 
 	 return (

@@ -24,12 +24,12 @@ interface Props {
   personId: string
 }
 
-// Моковые данные для демонстрации
+
 const companyData: Record<string, CompanyData> = {
   ivanov: {
     id: 'ivanov',
     name: 'ИП Иванов Иван Иванович',
-    status: 'Активно до 21.08.2025',
+    status: 'Токен до 21.08.2025',
     inn: '123456789012',
     ogrn: '321123456789012',
     address: 'г. Москва, ул. Тверская, д. 1, кв. 10',
@@ -46,7 +46,7 @@ const companyData: Record<string, CompanyData> = {
   petrova: {
     id: 'petrova',
     name: 'ООО "Петрова и Ко"',
-    status: 'Активно до 15.12.2025',
+    status: 'Токен до 15.12.2025',
     inn: '987654321098',
     ogrn: '1029876543210987',
     address: 'г. Санкт-Петербург, Невский пр., д. 50, оф. 15',
@@ -81,7 +81,7 @@ const companyData: Record<string, CompanyData> = {
   company1: {
     id: 'company1',
     name: 'ООО "ТехСтарт"',
-    status: 'Активно до 30.06.2025',
+    status: 'Токен до 30.06.2025',
     inn: '555666777888',
     ogrn: '1025556667778888',
     address: 'г. Новосибирск, ул. Красный проспект, д. 100, оф. 25',

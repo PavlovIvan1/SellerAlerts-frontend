@@ -14,7 +14,7 @@ interface Props {
   personId: string
 }
 
-// Персонализированные данные для каждого человека
+
 const servicesByPerson: Record<string, ServiceCard[]> = {
   ivanov: [
     {
@@ -112,7 +112,7 @@ export function Services({ personId }: Props) {
 
   const serviceCards = servicesByPerson[personId] || []
 
-  // Предотвращаем глобальные свайпы при взаимодействии со слайдером
+
   const handleTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation()
   }
@@ -236,7 +236,6 @@ export function Services({ personId }: Props) {
                   </div>
                 </div>
                 
-                {/* Buttons outside the card */}
                 {card.type === 'service' && (
                   <button className={styles.detailsButton} disabled={card.isLocked}>
                     Подробнее

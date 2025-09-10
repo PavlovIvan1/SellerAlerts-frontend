@@ -15,7 +15,7 @@ interface Person {
 }
 
 export function App() {
-  // Load saved people from localStorage on initialization
+
   const [people, setPeople] = useState<Person[]>(() => {
     try {
       const savedPeople = localStorage.getItem('seller-alert-people')
@@ -26,7 +26,7 @@ export function App() {
     }
   })
   
-  // Load saved selected person from localStorage on initialization
+
   const [personId, setPersonId] = useState(() => {
     try {
       const savedPersonId = localStorage.getItem('seller-alert-selected-person')
@@ -46,7 +46,7 @@ export function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
 
-  // Save people to localStorage whenever the people array changes
+
   useEffect(() => {
     try {
       localStorage.setItem('seller-alert-people', JSON.stringify(people))
@@ -55,7 +55,7 @@ export function App() {
     }
   }, [people])
 
-  // Save selected person to localStorage whenever personId changes
+
   useEffect(() => {
     try {
       if (personId) {
@@ -68,14 +68,14 @@ export function App() {
     }
   }, [personId])
 
-  // Initialize displayPersonId when component mounts or when people/personId changes
+
   useEffect(() => {
     if (people.length > 0) {
-      // If we have a saved personId and it exists in people, use it
+
       if (personId && people.find(p => p.id === personId)) {
         setDisplayPersonId(personId)
       } 
-      // Otherwise, select the first person
+
       else if (!personId) {
         const firstPersonId = people[0].id
         setPersonId(firstPersonId)
@@ -93,10 +93,10 @@ export function App() {
   }
 
   const handleAddPerson = (person: Person) => {
-    // Check if person already exists
+
     if (!people.find(p => p.id === person.id)) {
       setPeople(prev => [...prev, person])
-      // If no person is selected yet, select this one
+
       if (!personId) {
         setPersonId(person.id)
         setDisplayPersonId(person.id)
