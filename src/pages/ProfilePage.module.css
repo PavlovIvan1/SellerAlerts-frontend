@@ -79,3 +79,51 @@
 		font-size: 0.95rem;
 	}
 }
+
+/* Общий контейнер (аналог headerTabsBlock в Home) */
+.headerBlock {
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  padding: var(--spacing-md);
+	margin-bottom: 24px;
+}
+
+/* Заголовок профиля со стрелкой */
+.profileHeaderSection {
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  border-top: 1px solid var(--border-light);
+  padding: var(--spacing-sm) 0; /* чтобы не прилипало */
+}
+
+/* Кнопка назад */
+.profileBackButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  color: #3C91E6;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.profileBackButton:hover {
+  background-color: var(--bg-tertiary);
+  color: #2980D4;
+}
+
+/* Текст "Профиль" */
+.profileTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1B263B;
+  margin: 0;
+}

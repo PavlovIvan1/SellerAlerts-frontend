@@ -1,116 +1,49 @@
+import rawServices from '@/data/servicesByPerson.json'
+import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
 import styles from './Services.module.css'
 
-interface ServiceCard {
+
+export interface ServiceCard {
   id: string
   title: string
+  titleDescription: string
+  description: string
+  video: string
+  photo: string
+  advantages: string[]
+  advantageOffer: string
+  howItWorks: string[]
   type: 'service' | 'autotables' | 'autogems'
   isLocked?: boolean
   autoRenewal?: boolean
   paidUntil?: string
+  guide?: string[]
 }
 
 interface Props {
   personId: string
 }
 
+const servicesByPerson = rawServices as Record<string, ServiceCard[]>
 
-const servicesByPerson: Record<string, ServiceCard[]> = {
-  ivanov: [
-    {
-      id: 'service1',
-      title: 'Сервис №1',
-      type: 'service',
-      isLocked: true
-    },
-    {
-      id: 'autotables',
-      title: 'Автотаблицы',
-      type: 'autotables',
-      isLocked: false
-    },
-    {
-      id: 'autogems',
-      title: 'Автоджем',
-      type: 'autogems',
-      isLocked: false,
-      autoRenewal: true,
-      paidUntil: '15.03.2025'
-    }
-  ],
-  petrova: [
-    {
-      id: 'service1',
-      title: 'Сервис №1',
-      type: 'service',
-      isLocked: false
-    },
-    {
-      id: 'autotables',
-      title: 'Автотаблицы',
-      type: 'autotables',
-      isLocked: true
-    },
-    {
-      id: 'autogems',
-      title: 'Автоджем',
-      type: 'autogems',
-      isLocked: false,
-      autoRenewal: false,
-      paidUntil: '28.02.2025'
-    }
-  ],
-  sidorov: [
-    {
-      id: 'service1',
-      title: 'Сервис №1',
-      type: 'service',
-      isLocked: true
-    },
-    {
-      id: 'autotables',
-      title: 'Автотаблицы',
-      type: 'autotables',
-      isLocked: true
-    },
-    {
-      id: 'autogems',
-      title: 'Автоджем',
-      type: 'autogems',
-      isLocked: true,
-      autoRenewal: false,
-      paidUntil: 'Не оплачено'
-    }
-  ],
-  company1: [
-    {
-      id: 'service1',
-      title: 'Сервис №1',
-      type: 'service',
-      isLocked: false
-    },
-    {
-      id: 'autotables',
-      title: 'Автотаблицы',
-      type: 'autotables',
-      isLocked: false
-    },
-    {
-      id: 'autogems',
-      title: 'Автоджем',
-      type: 'autogems',
-      isLocked: false,
-      autoRenewal: true,
-      paidUntil: '10.07.2025'
-    }
-  ]
-}
 
 export function Services({ personId }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null)
   const [expandedCard] = useState<string | null>(null)
 
   const serviceCards = servicesByPerson[personId] || []
+
+  const router = useRouter()
+
+  const handleClick = (id: string, pId: string) => {
+    router.navigate({
+      to: '/service/$id',
+      params: { id },
+      search: { pId }
+    })
+  }
+
 
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -176,7 +109,7 @@ export function Services({ personId }: Props) {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
           >
-            {serviceCards.map((card) => (
+            {serviceCards.map((card: ServiceCard) => (
               <div key={card.id} className={styles.serviceCardWrapper}>
                 <div className={`${styles.serviceCard} ${expandedCard === card.id ? styles.expanded : ''}`}>
                   {card.isLocked && (
@@ -237,19 +170,21 @@ export function Services({ personId }: Props) {
                 </div>
                 
                 {card.type === 'service' && (
-                  <button className={styles.detailsButton} disabled={card.isLocked}>
+                  <button className={styles.detailsButton} disabled={card.isLocked}
+                  onClick={() => handleClick(card.id, personId)}
+                  >
                     Подробнее
                   </button>
                 )}
                 
                 {card.type === 'autotables' && (
-                  <button className={styles.detailsButton}>
+                  <button className={styles.detailsButton}                   onClick={() => handleClick(card.id, personId)}>
                     Подробнее
                   </button>
                 )}
                 
                 {card.type === 'autogems' && (
-                  <button className={styles.tableButton}>
+                  <button className={styles.tableButton}                   onClick={() => handleClick(card.id, personId)}>
                     Ссылка на таблицу
                   </button>
                 )}

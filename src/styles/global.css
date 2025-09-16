@@ -91,7 +91,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Combined header and tabs block */
 .headerTabsBlock {
   background-color: var(--bg-primary);
-  border-radius: var(--border-radius-lg);
+  border-bottom-left-radius: var(--border-radius-lg);
+  border-bottom-right-radius: var(--border-radius-lg);
   overflow: hidden;
   padding: var(--spacing-md);
 }

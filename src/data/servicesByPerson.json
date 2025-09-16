@@ -1,0 +1,246 @@
+{
+  "ivanov": [
+    {
+      "id": "service1",
+      "title": "Сервис №1",
+      "titleDescription": "Улучши продажи с сервисом 1",
+      "description": "Сервис №1 помогает бизнесу автоматизировать продажи и удерживать клиентов.",
+      "video": "https://example.com/video1.mp4",
+      "photo": "https://example.com/img1.jpg",
+      "advantages": ["Экономия времени", "Увеличение продаж", "Простая интеграция"],
+      "advantageOffer": "С сервисом №1 вы сможете продавать быстрее и эффективнее.",
+      "howItWorks": ["Подключите сервис", "Загрузите данные", "Получайте аналитику"],
+      "type": "service",
+      "isLocked": false,
+      "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autotables",
+      "title": "Автотаблицы",
+      "titleDescription": "Автоматизация работы с таблицами",
+      "description": "Сервис автотаблиц помогает вести учет, аналитику и отчёты без ручной рутины.",
+      "video": "https://example.com/autotables.mp4",
+      "photo": "https://example.com/autotables1.png",
+      "advantages": ["Быстрая обработка данных", "Совместная работа", "Интеграция с Excel и Google Sheets"],
+      "advantageOffer": "Автотаблицы освободят вас от рутины и ускорят работу в 3 раза.",
+      "howItWorks": ["Создайте таблицу", "Настройте автоматизацию", "Отслеживайте обновления"],
+      "type": "autotables",
+      "isLocked": false,
+      "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autogems",
+      "title": "Автоджем",
+      "titleDescription": "Автоматизация бонусов и подписок",
+      "description": "Автоджем помогает настроить бонусную систему и управлять автопродлением подписок.",
+      "video": "https://example.com/autogems.mp4",
+      "photo": "https://example.com/autogems1.png",
+      "advantages": ["Удобное управление подписками", "Автоматизация начислений", "Гибкие настройки оплаты"],
+      "advantageOffer": "С Автоджемом клиенты останутся с вами надолго.",
+      "howItWorks": ["Задайте тарифы", "Подключите платёжную систему", "Отслеживайте статистику"],
+      "type": "autogems",
+      "isLocked": false,
+      "autoRenewal": true,
+      "paidUntil": "15.03.2025",
+      "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    }
+  ],
+  "petrova": [
+    {
+      "id": "service1",
+      "title": "Сервис №1",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "service",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autotables",
+      "title": "Автотаблицы",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autotables",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autogems",
+      "title": "Автоджем",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autogems",
+      "isLocked": false,
+      "autoRenewal": false,
+      "paidUntil": "28.02.2025",
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    }
+  ],
+  "sidorov": [
+    {
+      "id": "service1",
+      "title": "Сервис №1",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "service",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autotables",
+      "title": "Автотаблицы",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autotables",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autogems",
+      "title": "Автоджем",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autogems",
+      "isLocked": false,
+      "autoRenewal": false,
+      "paidUntil": "Не оплачено",
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    }
+  ],
+  "company1": [
+    {
+      "id": "service1",
+      "title": "Сервис №1",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "service",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autotables",
+      "title": "Автотаблицы",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autotables",
+      "isLocked": false,
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    },
+    {
+      "id": "autogems",
+      "title": "Автоджем",
+      "titleDescription": "Заглушка",
+      "description": "Описание заглушка",
+      "video": "https://example.com/video.mp4",
+      "photo": "",
+      "advantages": [],
+      "advantageOffer": "Заглушка",
+      "howItWorks": [],
+      "type": "autogems",
+      "isLocked": false,
+      "autoRenewal": true,
+      "paidUntil": "10.07.2025",
+            "guide": [
+        "Зайдите в раздел 'Сервисы'",
+        "Выберите Сервис №1",
+        "Нажмите кнопку 'Подключить'",
+        "Следуйте подсказкам для настройки"
+      ]
+    }
+  ]
+}

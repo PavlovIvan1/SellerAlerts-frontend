@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "routes": "tanstack-router generate"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.131.41",
+    "@tanstack/router-plugin": "^1.131.43",
+    "@types/node": "^24.3.3",
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
