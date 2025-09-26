@@ -6,12 +6,21 @@ export interface PaginationResult {
 }
 
 // Supplier
+export interface SupplierUser {
+  id: number;
+}
+
 export interface Supplier {
   supplier_id: string;
   name: string;
   consumers: ('auto_tables' | 'auto_jam' | 'dashboard')[];
   active_token: boolean;
-  users: { id: number }[];
+  users: SupplierUser[];
+}
+
+export interface SuppliersResponse {
+  data: Supplier[];
+  pagination: PaginationResult;
 }
 
 // Dashboard
@@ -42,6 +51,7 @@ export interface Dashboard {
 
 // Token Scope
 export interface Scope {
-  value: number;
-  type: 'REQUIRED' | 'OPTIONAL';
+  name: string;
+  value: "content" | "contentanalytics" | "discountsandprices" | "marketplace" | "statistics" | "advert" | "questionsandfeedback" | "recommendations" | "buyerchat" | "supplies" | "returns" | "documents" | "read-only";
+  type: "REQUIRED" | "OPTIONAL";
 }

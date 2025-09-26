@@ -38,6 +38,7 @@
       "@styles/*": ["styles/*"],
       "@routes/*": ["routes/*"],
       "@data/*": ["data/*"],
+      "@api/*": ["api/*"],
     },
 
     /* Node typings */

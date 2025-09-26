@@ -1,5 +1,5 @@
-import api from '../axios'
-import type { Scope } from '../types'
+import api from '../axios';
+import type { Scope } from '../types';
 
 // Добавить WB токен
 export const addToken = (token: string) =>

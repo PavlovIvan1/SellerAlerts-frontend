@@ -114,6 +114,7 @@
 // }
 
 
+import { getSuppliers } from '@api/services/supplierService'
 import { SellerCards } from '@components/sections/SellerCards/SellerCards'
 import { Services } from '@components/sections/Services/Services'
 import { Header } from '@components/ui/Header/Header'
@@ -165,6 +166,17 @@ export function Home() {
 
   const stopDrag = () => setIsDragging(false)
 
+  // Функция для обновления списка поставщиков
+  const handleSuppliersUpdate = async () => {
+    try {
+      const response = await getSuppliers();
+      // Здесь можно обновить локальное состояние или вызвать API для синхронизации
+      console.log('Suppliers updated:', response.data);
+    } catch (error) {
+      console.error('Failed to update suppliers:', error);
+    }
+  }
+
   return (
     <div
       className="AppProvider"
@@ -186,6 +198,7 @@ export function Home() {
           onModalStateChange={setIsModalOpen}
           people={people}
           onAddPerson={addPerson}
+          onSuppliersUpdate={handleSuppliersUpdate}
         />
       </div>
 

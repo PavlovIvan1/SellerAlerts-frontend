@@ -16,9 +16,10 @@ interface TabsProps {
   onModalStateChange: (isOpen: boolean) => void
   people: Person[]
   onAddPerson: (person: Person) => void
+  onSuppliersUpdate?: () => void
 }
 
-export function Tabs({ selectedId, onSelect, onModalStateChange, people, onAddPerson }: TabsProps) {
+export function Tabs({ selectedId, onSelect, onModalStateChange, people, onAddPerson, onSuppliersUpdate }: TabsProps) {
   const tabsRef = useRef<HTMLDivElement>(null)
   const [showNavigationHint, setShowNavigationHint] = useState(false)
   const [isTokenModalOpen, setIsTokenModalOpen] = useState(false)
@@ -119,6 +120,7 @@ export function Tabs({ selectedId, onSelect, onModalStateChange, people, onAddPe
         isOpen={isTokenModalOpen} 
         onClose={() => setIsTokenModalOpen(false)}
         onAddPerson={onAddPerson}
+        onSuppliersUpdate={onSuppliersUpdate}
       />
     </>
   )

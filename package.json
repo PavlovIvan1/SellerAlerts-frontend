@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "sync:suppliers": "node scripts/sync-suppliers.mjs",
     "routes": "tanstack-router generate"
   },
   "dependencies": {
