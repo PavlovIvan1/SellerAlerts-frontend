@@ -3,9 +3,9 @@
 	padding: 0;
 }
 
-.profileContent {
+.profileContent {                                     
 	/* padding: var(--spacing-md); */
-	display: flex;
+	display: flex;  
 	flex-direction: column;
 	gap: var(--spacing-lg);
 }
@@ -87,7 +87,7 @@
   flex-direction: column;
   gap: 10px;
 }
-
+  
 .advantageItem {
   display: flex;
   align-items: flex-start;
