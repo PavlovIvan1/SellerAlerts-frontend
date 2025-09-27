@@ -49,6 +49,12 @@ export interface Dashboard {
   stats: DashboardStats[] | null;
 }
 
+// Dashboard Response
+export interface DashboardsResponse {
+  data: Dashboard[];
+  pagination: PaginationResult;
+}
+
 // Token Scope
 export interface Scope {
   name: string;

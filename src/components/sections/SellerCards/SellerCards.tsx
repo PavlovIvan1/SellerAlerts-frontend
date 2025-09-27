@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
-import cardsByPerson from '../../../data/cardsByPerson.json'
-import categoriesByPerson from '../../../data/categoriesByPerson.json'
-import productsByPerson from '../../../data/productsByPerson.json'
+import { useEffect, useState } from 'react'
+import { useDashboard } from '../../../hooks/useDashboard'
+import { useDashboardCards } from '../../../hooks/useDashboardCards'
 import { SellerCard } from '../../ui/SellerCard/SellerCard'
 import styles from './SellerCards.module.css'
 
@@ -44,35 +43,18 @@ interface Props {
   personId: string
 }
 
-interface Product {
-  id: string
-  name: string
-  orders: number
-  ordersAmount: string
-  drr: string
-  ctr: string
-  cpc: string
-}
 
-interface Category {
-  id: string
-  name: string
-  orders: number
-  ordersAmount: string
-  drr: string
-  ctr: string
-  cpc: string
-}
 
-type StatCategory = 'полная' | 'артикул' | 'категория'
+type StatCategory = 'полная' | 'артикул'
 
 export function SellerCards({ personId }: Props) {
 	 const [activeCategory, setActiveCategory] = useState<StatCategory>('полная')
 	 const [showAll, setShowAll] = useState(false)
 	 const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-	 const allCards = useMemo(() => (cardsByPerson as Record<string, any[]>)[personId] ?? [], [personId])
-	 const products = useMemo(() => (productsByPerson as Record<string, Product[]>)[personId] ?? [], [personId])
-	 const categories = useMemo(() => (categoriesByPerson as Record<string, Category[]>)[personId] ?? [], [personId])
+	 
+	 // Используем API для получения данных дэшборда
+	 const { dashboards, loading, error } = useDashboard({ supplierId: personId })
+	 const { cards: allCards, products } = useDashboardCards(dashboards)
 
 
 	 const [initialCardsCount, setInitialCardsCount] = useState(4)
@@ -107,6 +89,38 @@ export function SellerCards({ personId }: Props) {
 						 <h2 className={styles.emptyTitle}>Нет данных</h2>
 						 <p className={styles.emptyDescription}>
 							 Добавьте компанию через токен доступа
+						 </p>
+					 </div>
+				 </div>
+			 </section>
+		 )
+	 }
+
+	 // Показываем состояние загрузки
+	 if (loading) {
+		 return (
+			 <section className={styles.sellerSection}>
+				 <div className={styles.container}>
+					 <div className={styles.emptyState}>
+						 <h2 className={styles.emptyTitle}>Загрузка...</h2>
+						 <p className={styles.emptyDescription}>
+							 Получаем данные дэшборда
+						 </p>
+					 </div>
+				 </div>
+			 </section>
+		 )
+	 }
+
+	 // Показываем ошибку
+	 if (error) {
+		 return (
+			 <section className={styles.sellerSection}>
+				 <div className={styles.container}>
+					 <div className={styles.emptyState}>
+						 <h2 className={styles.emptyTitle}>Ошибка загрузки</h2>
+						 <p className={styles.emptyDescription}>
+							 {error}
 						 </p>
 					 </div>
 				 </div>
@@ -162,7 +176,7 @@ export function SellerCards({ personId }: Props) {
 								 </button>
 								 {isDropdownOpen && (
 									 <div className={styles.dropdownMenu}>
-										 {(['полная', 'артикул', 'категория'] as const).map((category) => (
+										 {(['полная', 'артикул'] as const).map((category) => (
 											 <button
 												 key={category}
 												 className={`${styles.dropdownItem} ${activeCategory === category ? styles.active : ''}`}
@@ -179,7 +193,7 @@ export function SellerCards({ personId }: Props) {
 							 </div>
 						 ) : (
 							 <div className={styles.categories}>
-								 {(['полная', 'артикул', 'категория'] as const).map((category) => (
+								 {(['полная', 'артикул'] as const).map((category) => (
 									 <button
 										 key={category}
 										 className={`${styles.categoryButton} ${activeCategory === category ? styles.active : ''}`}
@@ -295,82 +309,6 @@ export function SellerCards({ personId }: Props) {
 						 </>
 					 )}
 					 
-					 {activeCategory === 'категория' && (
-						 <>  
-							 {categories.length > 0 ? (
-								 <div className={styles.productsTable}>
-									 <div className={styles.tableHeader}>
-										 <div className={styles.headerCell}>Заказы</div>
-										 <div className={styles.headerCell}>ДРР</div>
-										 <div className={styles.headerCell}>CTR</div>
-										 <div className={styles.headerCell}>CPC</div>
-									 </div>
-									 <div className={styles.tableBody}>
-										 {categories.map((category, index) => (
-											 <div key={category.id} className={styles.tableRow}>
-												 <div className={styles.productCell}>
-													 <div className={styles.productName}>
-												 <span className={styles.numberBadge}>{index + 1}</span>
-												 {category.name}
-											 </div>
-													 <div className={styles.productDataRow}>
-														 <div className={styles.dataColumn}>
-															 {(() => {
-																 const formatted = formatOrdersAmount(category.ordersAmount)
-																 return (
-																	 <>
-																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
-																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
-																	 </>
-																 )
-															 })()}
-														 </div>
-														 <div className={styles.dataColumn}>
-															 {(() => {
-																 const formatted = formatValueWithSymbol(category.drr)
-																 return (
-																	 <>
-																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
-																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
-																	 </>
-																 )
-															 })()}
-														 </div>
-														 <div className={styles.dataColumn}>
-															 {(() => {
-																 const formatted = formatValueWithSymbol(category.ctr)
-																 return (
-																	 <>
-																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
-																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
-																	 </>
-																 )
-															 })()}
-														 </div>
-														 <div className={styles.dataColumn}>
-															 {(() => {
-																 const formatted = formatValueWithSymbol(category.cpc)
-																 return (
-																	 <>
-																		 <span className={styles.mainValue}>{formatted.mainValue}</span>
-																		 <span className={styles.suffixValue}>{formatted.suffix}</span>
-																	 </>
-																 )
-															 })()}
-														 </div>
-													 </div>
-												 </div>
-											 </div>
-										 ))}
-									 </div>
-								 </div>
-							 ) : (
-								 <div className={styles.emptyProducts}>
-									 <p>Данные по категориям отсутствуют</p>
-								 </div>
-							 )}
-						 </>
-					 )}
 				 </div>
 			 </div>
 		 </section>
