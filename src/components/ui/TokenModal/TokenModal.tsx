@@ -63,10 +63,10 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
   const loadAllowedScopes = async () => {
     try {
       const response = await getTokenScopes();
+      console.log("scope data",response.data.data)
       const requiredScopes = response.data.data
         .filter(scope => scope.type === 'REQUIRED')
         .map(scope => {
-          // API может вернуть value числом (позиция бита) или строковым ключом
           if (typeof scope.value === 'number') {
             return scope.value;
           }
@@ -93,6 +93,8 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
     } catch (error) {
       console.error('Failed to load token scopes:', error);
       setValidationError('Не удалось загрузить требования к токену');
+    } finally {
+      console.error('Loaded token scopes');
     }
   };
 
