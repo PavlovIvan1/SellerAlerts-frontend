@@ -56,6 +56,7 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
   // Загружаем допустимые скоупы при открытии модала
   useEffect(() => {
     if (isOpen) {
+      console.log('TokenModal opened');
       loadAllowedScopes();
     }
   }, [isOpen]);
@@ -94,7 +95,7 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
       console.error('Failed to load token scopes:', error);
       setValidationError('Не удалось загрузить требования к токену');
     } finally {
-      console.error('Loaded token scopes');
+      console.log('Loaded token scopes');
     }
   };
 
@@ -104,7 +105,6 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
     setFoundTokenInfo(null);
     setDecodedToken(null);
 
-    // Автоматически декодируем токен при вводе
     if (value.trim() && allowedScopes.length > 0) {
       try {
         const decoded = decodeWbToken(value.trim(), allowedScopes);

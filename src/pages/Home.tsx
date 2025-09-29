@@ -124,6 +124,9 @@ import { usePersonNavigation } from '@hooks/usePersonNavigation'
 import '@styles/global.css'
 import { useRef, useState } from 'react'
 
+import { useEffect } from 'react'
+import { loginWithTelegram } from '../api/services'
+
 export function Home() {
   const appRef = useRef<HTMLDivElement>(null)
 
@@ -176,6 +179,32 @@ export function Home() {
       console.error('Failed to update suppliers:', error);
     }
   }
+
+    useEffect(() => {
+      console.log('test app.tsx')
+      const fetchAuth = async () => {
+        const isAuthChecked = localStorage.getItem('isAuthChecked');
+  
+        if (!isAuthChecked) {
+          try {
+            const response = await loginWithTelegram(window.Telegram.WebApp.initData);
+            if (response.data.user_id) {
+              localStorage.setItem('isAuthChecked', 'true');
+            } else {
+              console.error("Backend hasn't responded with user_id");
+            }
+          } catch (error: any) {
+            if (error.response && error.response.status === 401) {
+              console.error("Invalid init_data");
+            } else {
+              console.error("Ошибка авторизации:", error);
+            }
+          }
+        }
+      };
+  
+      fetchAuth();
+    }, []);
 
   return (
     <div
