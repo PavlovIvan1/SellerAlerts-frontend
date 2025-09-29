@@ -57,7 +57,7 @@ export interface DashboardsResponse {
 
 // Token Scope
 export interface Scope {
-  name: string;
-  value: "content" | "contentanalytics" | "discountsandprices" | "marketplace" | "statistics" | "advert" | "questionsandfeedback" | "recommendations" | "buyerchat" | "supplies" | "returns" | "documents" | "read-only";
+  name?: string;
+  value: number | "content" | "contentanalytics" | "discountsandprices" | "marketplace" | "statistics" | "advert" | "questionsandfeedback" | "recommendations" | "buyerchat" | "supplies" | "returns" | "documents" | "read-only";
   type: "REQUIRED" | "OPTIONAL";
 }

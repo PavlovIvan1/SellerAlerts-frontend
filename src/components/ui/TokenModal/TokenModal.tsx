@@ -66,7 +66,11 @@ export function TokenModal({ isOpen, onClose, onAddPerson, onSuppliersUpdate }: 
       const requiredScopes = response.data.data
         .filter(scope => scope.type === 'REQUIRED')
         .map(scope => {
-          // Маппинг названий скоупов на номера битов
+          // API может вернуть value числом (позиция бита) или строковым ключом
+          if (typeof scope.value === 'number') {
+            return scope.value;
+          }
+
           const scopeMap: { [key: string]: number } = {
             'content': 1,
             'contentanalytics': 2,
