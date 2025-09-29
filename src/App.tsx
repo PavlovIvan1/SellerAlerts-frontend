@@ -19,6 +19,7 @@ declare module '@tanstack/react-router' {
 export function App() {
   
   useEffect(() => {
+    console.log('test app.tsx')
     const fetchAuth = async () => {
       const isAuthChecked = localStorage.getItem('isAuthChecked');
 
